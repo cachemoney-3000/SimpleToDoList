@@ -1,0 +1,69 @@
+@startuml
+
+class Application {
+    +main(String[] args)
+    +start()
+        'this method will load the fxml file'
+        'it will also create a scene with its title'
+        'catch all the exception errors and prints them'
+}
+
+class Controller {
+    'attributes'
+        - TextField addNote;
+        - CheckBox checkBox;
+        - ImageView dateChange;
+        - ImageView dueDate;
+        - TextField itemDesc;
+        - TextField listTitle;
+        - MenuItem menuClose;
+        - MenuItem menuLoad;
+        - MenuItem menuSave;
+        - ImageView removeItem;
+        - ImageView removeList;
+        - Label showDate;
+        - Button tabCompleted;
+        - Button tabIncomplete;
+        - Button tabNew;
+        - Button tabToday;
+
+    'methods'
+        + void save(ActionEvent actionEvent)
+            'method that will save the list'
+            'prompts user where to save'
+        + void load(ActionEvent actionEvent)
+            'method that will load a list'
+            'prompts user where it is located'
+        + void close(ActionEvent actionEvent)
+            'will close the application'
+
+        + void today(MouseEvent mouseEvent)
+            'will show the item on the plan's tab'
+        + void completed(MouseEvent mouseEvent)
+            'will show all the completed tasks'
+        + void incomplete(MouseEvent mouseEvent)
+            'will show all the incompleted tasks'
+        + void addList(MouseEvent mouseEvent)
+            'will add a new list'
+
+        + void changeTitle(KeyEvent keyEvent)
+            'this will change the title of the list'
+        + void removeList(MouseEvent mouseEvent)
+            'this will remove a list when clicked'
+
+        + void editText(KeyEvent keyEvent)
+            'this can edit the text inside an item'
+        + void changeDate(MouseEvent mouseEvent)
+            'this can change the due date of an item'
+        + void deleteItem(MouseEvent mouseEvent)
+            'this will delete an item in a list'
+
+        + void addItem(KeyEvent keyEvent)
+            'this will add an item inside a list'
+        + void pickDate(MouseEvent mouseEvent)
+            'this will be able to pick for a due date'
+}
+
+Application <|-- javafx.application.Application
+Application *-- Controller
+@enduml

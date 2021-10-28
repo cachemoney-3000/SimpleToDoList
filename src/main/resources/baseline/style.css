@@ -1,0 +1,73 @@
+//BUTTONS TAB
+.button {
+    -fx-background-color:   #e7e7e7;
+    -fx-text-fill: black;
+    -fx-text-alignment: left;
+}
+
+.button:hover {
+    -fx-background-color:  #b8b8b8;
+    -fx-text-fill: black;
+}
+
+.button:pressed {
+    -fx-background-color:  #b8b8b8;
+    -fx-text-fill: black;
+}
+
+.button:focused {
+    -fx-background-color: #b8b8b8;
+    -fx-text-fill: black;
+}
+
+
+//BUTTONS Square
+.button2 {
+    -fx-background-color:   #5146b6;
+}
+
+.button2:hover {
+    -fx-background-color:  #675dbf;
+}
+.button2:focused {
+    -fx-background-color: #675dbf;
+}
+
+//List name text field
+.textField {
+	-fx-background-color: transparent;
+	-fx-text-fill: white;
+	
+}
+.textField: hover {
+    -fx-text-fill: white;
+}
+
+.textField: pressed {
+    -fx-background-color: #675dbf;
+    -fx-text-fill: #e9e8f6;
+}
+.textField: focused{
+    -fx-background-color: #675dbf;
+    -fx-text-fill: #e9e8f6;
+}
+
+
+//entry text field
+.textField2 {
+	-fx-background-color: #4d43ad;
+	-fx-text-fill: white;
+	
+}
+.textField2: hover {
+    -fx-text-fill: white;
+}
+
+.textField2: pressed {
+    -fx-background-color: #675dbf;
+    -fx-text-fill: #e9e8f6;
+}
+.textField2: focused{
+    -fx-background-color: #675dbf;
+    -fx-text-fill: #e9e8f6;
+}
