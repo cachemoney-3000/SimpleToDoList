@@ -12,11 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Controller {
 
@@ -78,7 +73,7 @@ public class Controller {
     void dueDate(MouseEvent event) {
         try{
             // load the fxml file
-            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("datePickerWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("datePickerWindow.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
             stage.setResizable(false);
