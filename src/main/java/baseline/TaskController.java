@@ -1,13 +1,15 @@
 package baseline;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
-import java.net.URL;
 import java.time.LocalDate;
 
 public class TaskController {
+
     @FXML
     private CheckBox checkBox;
 
@@ -20,16 +22,9 @@ public class TaskController {
     @FXML
     private TextField itemDescription;
 
-
-    public void setTask(String task) {
-        ContextMenu menu = new ContextMenu();
+    public void setData(String task, LocalDate date) {
         itemDescription.setText(task);
-        itemDescription.setContextMenu(menu);
+        dueDate.setText(String.valueOf(date));
     }
 
-    public void setDate(LocalDate date) {
-        ContextMenu menu = new ContextMenu();
-        dueDate.setText(String.valueOf(date));
-        dueDate.setContextMenu(menu);
-    }
 }

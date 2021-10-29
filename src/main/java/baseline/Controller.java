@@ -1,5 +1,9 @@
 package baseline;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +16,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class Controller {
 
@@ -42,8 +52,6 @@ public class Controller {
     @FXML
     private Button newButton;
 
-    @FXML
-    private VBox newListVbox;
 
     @FXML
     private Button planButton;
@@ -52,13 +60,13 @@ public class Controller {
     private Menu saveButton;
 
     @FXML
-    private Button dueDateButton;
-
-    @FXML
     private Label label;
 
     @FXML
     private DatePicker datePicker;
+
+    @FXML
+    private VBox vBox;
 
     @FXML
     void addList(MouseEvent event) {
@@ -69,30 +77,9 @@ public class Controller {
     void completed(MouseEvent event) {
 
     }
-    @FXML
-    void dueDate(MouseEvent event) {
-        try{
-            // load the fxml file
-            FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("datePickerWindow.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setScene(scene);
-            stage.show();
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    //@FXML
-    //void dateEntered(MouseEvent event) {
-       // Stage stage = (Stage) dueDateButton.getScene().getWindow();
-       // stage.close();
-        //label.setText("Due date: " + datePicker.getValue());
-
-   // }
     private ObservableList<Task> listOfTasks;
+
     @FXML
     void enteredItem(MouseEvent event) {
         int size = 1;
@@ -103,24 +90,18 @@ public class Controller {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("item.fxml"));
                 TaskController controller = new TaskController();
 
-                datePickerController dueDate = new datePickerController();
-                //String pattern = "MM/dd/yyyy HH:mm:ss";
-                //DateFormat df = new SimpleDateFormat(pattern);
-                //String date = df.format(dueDate.date());
-
-
                 nodes[i] = loader.load();
-                newListVbox.getChildren().add(nodes[i]);
-                controller.setTask(itemText.getText());
-                controller.setDate(dueDate.date());
+                //create new Event by getting values from gui
+                vBox.getChildren().add(nodes[i]);
+                controller.setData(itemText.getText(), datePicker.getValue());
 
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
+
+
 
 
 

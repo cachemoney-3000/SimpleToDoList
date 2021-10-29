@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -126,16 +127,16 @@
                   </HBox>
                   <VBox prefHeight="490.0" prefWidth="580.0">
                      <children>
-                        <ScrollPane prefHeight="507.0" prefWidth="580.0">
+                        <ScrollPane prefHeight="483.0" prefWidth="580.0">
                            <content>
-                              <VBox fx:id="newListVbox" prefHeight="450.0" prefWidth="562.0" />
+                              <VBox fx:id="vBox" prefHeight="450.0" prefWidth="562.0" />
                            </content>
                         </ScrollPane>
                      </children>
                   </VBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #5146b6;">
                      <children>
-                        <TextField fx:id="itemText" prefHeight="38.0" prefWidth="527.0" promptText="Enter your notes here" styleClass="textField2" stylesheets="@style.css">
+                        <TextField fx:id="itemText" prefHeight="38.0" prefWidth="398.0" promptText="Enter your notes here" styleClass="textField2" stylesheets="@style.css">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -146,18 +147,11 @@
                               <Insets bottom="15.0" left="15.0" top="15.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button fx:id="dateButton" mnemonicParsing="false" onMouseClicked="#dueDate" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@icons/calendar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                        <DatePicker fx:id="datePicker" prefHeight="35.0" prefWidth="109.0" styleClass="date-picker" stylesheets="@style.css">
                            <HBox.margin>
                               <Insets bottom="15.0" left="5.0" top="15.0" />
                            </HBox.margin>
-                        </Button>
+                        </DatePicker>
                         <Button fx:id="enterButton" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">

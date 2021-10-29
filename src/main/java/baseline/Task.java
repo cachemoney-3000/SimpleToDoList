@@ -1,25 +1,37 @@
 package baseline;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import javafx.scene.Node;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
-public class Task {
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class Task implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    private LocalDate date;
+
     private String description;
-    private String date;
 
-    public Task (String description, String date) {
-        this.description = description;
+    public Task(LocalDate date, String description) {
         this.date = date;
+        this.description = description;
     }
+
+    //public String getDate() {
+        //return date;
+    //}
 
     public String getDescription() {
         return description;
+    }
+
+
+
+    // this makes LocalEvents dispaly nicely in GUI
+    @Override
+    public String toString() {
+        return "At: " + date + description;
     }
 
 }
