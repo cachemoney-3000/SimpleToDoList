@@ -1,14 +1,14 @@
 package baseline;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class TaskController {
+public class TaskController implements Initializable {
 
     @FXML
     private CheckBox checkBox;
@@ -22,9 +22,20 @@ public class TaskController {
     @FXML
     private TextField itemDescription;
 
-    public void setData(String task, LocalDate date) {
-        itemDescription.setText(task);
-        dueDate.setText(String.valueOf(date));
+    private String title;
+    private LocalDate date;
+
+    public TaskController(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        itemDescription.setText("Hello");
+    }
+
+    public void setData(){
+        itemDescription.setText(title);
     }
 
 }

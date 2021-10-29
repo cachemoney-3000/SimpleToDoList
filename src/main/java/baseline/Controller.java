@@ -1,27 +1,23 @@
 package baseline;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import javafx.application.Application;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.util.Callback;
 
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class Controller {
 
@@ -29,7 +25,7 @@ public class Controller {
     private Button completedButton;
 
     @FXML
-    private Button dateButton;
+    private DatePicker datePicker;
 
     @FXML
     private ImageView deleteButton;
@@ -39,6 +35,9 @@ public class Controller {
 
     @FXML
     private Button incompleteButton;
+
+    @FXML
+    private ListView<Task> itemList;
 
     @FXML
     private TextField itemText;
@@ -52,21 +51,14 @@ public class Controller {
     @FXML
     private Button newButton;
 
+    @FXML
+    private VBox newListVbox;
 
     @FXML
     private Button planButton;
 
     @FXML
     private Menu saveButton;
-
-    @FXML
-    private Label label;
-
-    @FXML
-    private DatePicker datePicker;
-
-    @FXML
-    private VBox vBox;
 
     @FXML
     void addList(MouseEvent event) {
@@ -77,28 +69,26 @@ public class Controller {
     void completed(MouseEvent event) {
 
     }
-
-    private ObservableList<Task> listOfTasks;
+    private ObservableList<String> item = FXCollections.observableArrayList();
 
     @FXML
     void enteredItem(MouseEvent event) {
-        int size = 1;
-        try { //load task items to vbox
-            Node[] nodes = new Node[size];
-            for (int i = 0; i < nodes.length; i++) {
-                //load specific item
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("item.fxml"));
-                TaskController controller = new TaskController();
+        var newItem = new Task(datePicker.getValue(), itemText.getText());
 
-                nodes[i] = loader.load();
-                //create new Event by getting values from gui
-                vBox.getChildren().add(nodes[i]);
-                controller.setData(itemText.getText(), datePicker.getValue());
+        itemList.getItems().add(newItem);
+        datePicker.setValue(LocalDate.now());
 
+
+        itemList.setCellFactory(CheckBoxListCell.forListView(new Callback<Task, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue<Boolean> call(Task param) {
+                BooleanProperty observable = new SimpleBooleanProperty();
+                observable.addListener((obs, wasSelected, isNowSelected) ->
+                        System.out.println("Check box for "+item+" changed from "+wasSelected+" to "+isNowSelected)
+                );
+                return observable;
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        }));
     }
 
 
@@ -106,8 +96,7 @@ public class Controller {
 
 
     @FXML
-    void incomplete(MouseEvent event) throws IOException {
-
+    void incomplete(MouseEvent event) {
 
     }
 
@@ -116,6 +105,4 @@ public class Controller {
 
     }
 
-    public void dateEntered(MouseEvent mouseEvent) {
-    }
 }

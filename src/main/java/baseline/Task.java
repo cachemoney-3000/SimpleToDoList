@@ -1,11 +1,9 @@
 package baseline;
 
-import javafx.scene.Node;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Task implements Serializable {
+public class Task implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -18,9 +16,9 @@ public class Task implements Serializable {
         this.description = description;
     }
 
-    //public String getDate() {
-        //return date;
-    //}
+    public LocalDate getDate() {
+        return date;
+    }
 
     public String getDescription() {
         return description;
@@ -33,5 +31,4 @@ public class Task implements Serializable {
     public String toString() {
         return "At: " + date + description;
     }
-
 }
