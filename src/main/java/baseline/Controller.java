@@ -166,12 +166,18 @@ public class Controller implements Initializable {
             public void onChanged(Change<? extends Task> c) {
                 System.out.println("Changed on " + c);
                 if(c.next()){
-                    System.out.println(c.getFrom());
+                    itemList_completed.getItems().add(checkedItem.get(c.getFrom()));
                 }
-                //int i;
-                //for (i = 0; i < checkedItem.size(); i++) {
-                // itemList_completed.getItems().add(checkedItem.get(i));
-                //}
+            }
+        });
+
+        uncheckedItem.addListener(new ListChangeListener<Task>() {
+            @Override
+            public void onChanged(Change<? extends Task> c) {
+                System.out.println(c);
+                if(c.next()){
+                    itemList_incomplete.getItems().add(uncheckedItem.get(c.getFrom()));
+                }
             }
         });
 
@@ -187,11 +193,6 @@ public class Controller implements Initializable {
 
     @FXML
     void incomplete(MouseEvent event) {
-
-
-        for (Task value : uncheckedItem) {
-            itemList_incomplete.getItems().add(value);
-        }
     }
 
     @FXML
