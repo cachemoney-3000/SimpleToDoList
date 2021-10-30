@@ -23,14 +23,14 @@
 
 //BUTTONS Square
 .button2 {
-    -fx-background-color:   #5146b6;
+    -fx-background-color:   transparent;
 }
 
 .button2:hover {
-    -fx-background-color:  #675dbf;
+    -fx-background-color: rgba(0,0,0,0.1);
 }
 .button2:focused {
-    -fx-background-color: #675dbf;
+    -fx-background-color: rgba(0,0,0,0.1);
 }
 
 //List name text field
@@ -40,15 +40,16 @@
 	
 }
 .textField: hover {
+	-fx-background-color: rgba(0,0,0,0.1);
     -fx-text-fill: white;
 }
 
 .textField: pressed {
-    -fx-background-color: #675dbf;
+    -fx-background-color: transparent;
     -fx-text-fill: #e9e8f6;
 }
 .textField: focused{
-    -fx-background-color: #675dbf;
+    -fx-background-color: rgba(0,0,0,0.1);
     -fx-text-fill: #e9e8f6;
 }
 
@@ -60,6 +61,7 @@
 	
 }
 .textField2: hover {
+	-fx-background-color: #675dbf;
     -fx-text-fill: white;
 }
 
@@ -121,4 +123,16 @@
 .date-picker-popup .spinner .button .left-arrow,
 .date-picker-popup .spinner .button .right-arrow {
 	-fx-background-color: -fx-primary-color
+}
+
+//button3
+.button3 {
+    -fx-background-color:   #f5f4f2;
+}
+
+.button3:hover {
+    -fx-background-color:  #e9e6e2;
+}
+.button3:focused {
+    -fx-background-color: #e9e6e2;
 }

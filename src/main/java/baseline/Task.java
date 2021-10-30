@@ -29,6 +29,12 @@ public class Task implements Serializable{
     // this makes LocalEvents dispaly nicely in GUI
     @Override
     public String toString() {
-        return "At: " + date + description;
+        if(date == null){
+            return "|Task: " + description;
+        }
+        else{
+            return "Due Date: " + date + " |Task: " + description;
+        }
+
     }
 }
