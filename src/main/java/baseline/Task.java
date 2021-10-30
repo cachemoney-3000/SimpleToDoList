@@ -7,16 +7,16 @@ public class Task implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    private LocalDate date;
+    private String date;
 
     private String description;
 
-    public Task(LocalDate date, String description) {
+    public Task(String date, String description) {
         this.date = date;
         this.description = description;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -29,7 +29,7 @@ public class Task implements Serializable{
     // this makes LocalEvents dispaly nicely in GUI
     @Override
     public String toString() {
-        if(date == null){
+        if(date == ""){
             return "|Task: " + description;
         }
         else{

@@ -17,8 +17,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
+import javafx.util.converter.LocalDateStringConverter;
 
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -29,8 +41,6 @@ public class Controller implements Initializable {
     @FXML
     private DatePicker datePicker;
 
-    @FXML
-    private ImageView deleteButton;
 
     @FXML
     private Button enterButton;
@@ -60,7 +70,7 @@ public class Controller implements Initializable {
     private TextField listTitle;
 
     @FXML
-    private Menu loadButton;
+    private MenuItem loadButton;
 
     @FXML
     private Button newButton;
@@ -72,7 +82,7 @@ public class Controller implements Initializable {
     private Button planButton;
 
     @FXML
-    private Menu saveButton;
+    private MenuItem saveButton;
 
     @FXML
     private Pane planPane, completedPane, incompletePane;
@@ -100,12 +110,19 @@ public class Controller implements Initializable {
     private ObservableList<Task> checkedItem = FXCollections.observableArrayList();
     private ObservableList<Task> uncheckedItem = FXCollections.observableArrayList();
 
-
-
     @FXML
     void enteredItem(MouseEvent event) {
-        //create new Event by getting values from gui
-        var newItem = new Task(datePicker.getValue(), itemText.getText());
+        //create new Event by getting values from gui.
+        String date;
+
+        if(datePicker.getValue()==null){
+            date = "";
+        }
+        else {
+            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+
+        var newItem = new Task(date, itemText.getText());
 
         int index = itemList.getSelectionModel().getSelectedIndex();
         if(index >= 0){
@@ -198,4 +215,55 @@ public class Controller implements Initializable {
             item.remove(index);
         }
     }
+
+    private static void writeToTextFile(String filename, ObservableList<Task> tasks) throws IOException {
+        FileWriter writer = new FileWriter("docs/" + filename);
+        for(Task task : tasks){
+            writer.write(task.getDescription()+ "/" + task.getDate());
+            writer.write(",");
+        }
+        writer.close();
+    }
+
+    private static List<Task> readStudents(String filename) throws IOException {
+        List<Task> tasks = new ArrayList<>();
+
+        BufferedReader reader = Files.newBufferedReader(Path.of("docs/" + filename));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] names = line.split(",");
+            String[] dateString = line.split("/");
+
+            // Add the student to the list
+            tasks.add(new Task(dateString[0], names[0]));
+
+        }
+
+        return tasks;
+    }
+
+
+    @FXML
+    void loadList(ActionEvent event) throws IOException {
+        List<Task> inputStudents = null;
+        try {
+            inputStudents = readStudents("test.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        if (inputStudents != null) {
+            for (Task tasks : inputStudents) {
+                itemList.getItems().add(tasks);
+                item.add(tasks);
+            }
+        }
+    }
+
+    @FXML
+    void saveList(ActionEvent event) throws IOException {
+        writeToTextFile("test.txt", item);
+        System.out.println("saved");
+    }
+
 }
