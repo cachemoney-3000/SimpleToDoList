@@ -132,10 +132,6 @@ public class Controller implements Initializable {
     }
 
 
-    @FXML
-    void today(MouseEvent event) {
-
-    }
 
 
     @Override
@@ -152,13 +148,11 @@ public class Controller implements Initializable {
                     if (isNowSelected) {
                         checkedItem.add(task);
                     }
-                    item.removeAll(checkedItem);
-                    uncheckedItem.addAll(item);
+
                 });
                 return observable;
             }
         }));
-
 
 
         checkedItem.addListener(new ListChangeListener<Task>() {
@@ -171,28 +165,23 @@ public class Controller implements Initializable {
             }
         });
 
-        uncheckedItem.addListener(new ListChangeListener<Task>() {
-            @Override
-            public void onChanged(Change<? extends Task> c) {
-                System.out.println(c);
-                if(c.next()){
-                    itemList_incomplete.getItems().add(uncheckedItem.get(c.getFrom()));
-                }
-            }
-        });
-
-
         planPane.toFront();
     }
 
 
-    @FXML
-    void completed(MouseEvent event) {
-
-    }
 
     @FXML
     void incomplete(MouseEvent event) {
+        itemList_incomplete.getItems().clear();
+        uncheckedItem.clear();
+
+        item.removeAll(checkedItem);
+        uncheckedItem.addAll(item);
+
+        int i;
+        for(i = 0; i < uncheckedItem.size(); i++){
+            itemList_incomplete.getItems().add(uncheckedItem.get(i));
+        }
     }
 
     @FXML
@@ -209,6 +198,4 @@ public class Controller implements Initializable {
             item.remove(index);
         }
     }
-
-
 }
