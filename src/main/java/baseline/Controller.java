@@ -4,6 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -150,15 +151,30 @@ public class Controller implements Initializable {
                 observable.addListener((obs, wasSelected, isNowSelected) -> {
                     if (isNowSelected) {
                         checkedItem.add(task);
-                        System.out.println(checkedItem);
-                    } else if (wasSelected) {
-                        System.out.println(task);
-                        uncheckedItem.add(task);
                     }
+                    item.removeAll(checkedItem);
+                    uncheckedItem.addAll(item);
                 });
                 return observable;
             }
         }));
+
+
+
+        checkedItem.addListener(new ListChangeListener<Task>() {
+            @Override
+            public void onChanged(Change<? extends Task> c) {
+                System.out.println("Changed on " + c);
+                if(c.next()){
+                    System.out.println(c.getFrom());
+                }
+                //int i;
+                //for (i = 0; i < checkedItem.size(); i++) {
+                // itemList_completed.getItems().add(checkedItem.get(i));
+                //}
+            }
+        });
+
 
         planPane.toFront();
     }
@@ -166,16 +182,21 @@ public class Controller implements Initializable {
 
     @FXML
     void completed(MouseEvent event) {
-        for(int i = 0; i < checkedItem.size(); i++){
-            itemList_completed.getItems().add(checkedItem.get(i));
-        }
+
     }
 
     @FXML
     void incomplete(MouseEvent event) {
-        for(int i = 0; i < uncheckedItem.size(); i++){
-            itemList_completed.getItems().add(uncheckedItem.get(i));
+
+
+        for (Task value : uncheckedItem) {
+            itemList_incomplete.getItems().add(value);
         }
+    }
+
+    @FXML
+    void viewList(MouseEvent event) {
+
     }
 
 
