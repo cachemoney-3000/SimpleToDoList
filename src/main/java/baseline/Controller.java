@@ -8,11 +8,13 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -55,7 +57,7 @@ public class Controller implements Initializable {
     private ListView<Task> itemList;
 
     @FXML
-    private ListView<Task> itemList_completed;
+    public ListView<Task> itemList_completed;
 
     @FXML
     private ListView<Task> itemList_incomplete;
@@ -85,7 +87,11 @@ public class Controller implements Initializable {
     private Pane planPane, completedPane, incompletePane;
 
     @FXML
+    public AnchorPane leftPane, newPane;
+
+    @FXML
     void tabButtonAction(ActionEvent event){
+
         if(event.getSource()==planButton){
             planPane.toFront();
         }
@@ -94,18 +100,27 @@ public class Controller implements Initializable {
         }
         else if(event.getSource() == incompleteButton){
             incompletePane.toFront();
+            System.out.println("incomplete");
+        }
+        else if(event.getSource() == newButton){
+            //newPane.toFront();
         }
 
     }
 
     @FXML
-    void addList(MouseEvent event) {
+    void addList(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("newButton.fxml"));
+        newListVbox.getChildren().add(loader.load());
+
+        FXMLLoader loader1 = new FXMLLoader(Application.class.getResource("newPane.fxml"));
+        leftPane.getChildren().add(loader1.load());
 
     }
 
-    private ObservableList<Task> item = FXCollections.observableArrayList();
-    private ObservableList<Task> checkedItem = FXCollections.observableArrayList();
-    private ObservableList<Task> uncheckedItem = FXCollections.observableArrayList();
+    public ObservableList<Task> item = FXCollections.observableArrayList();
+    public ObservableList<Task> checkedItem = FXCollections.observableArrayList();
+    public ObservableList<Task> uncheckedItem = FXCollections.observableArrayList();
 
     @FXML
     void enteredItem(MouseEvent event) {
@@ -154,28 +169,22 @@ public class Controller implements Initializable {
                 -> itemText.setText(String.valueOf(itemList.getSelectionModel().getSelectedItem())));
 
 
-        itemList.setCellFactory(CheckBoxListCell.forListView(new Callback<>() {
-            @Override
-            public ObservableValue<Boolean> call(Task task) {
-                BooleanProperty observable = new SimpleBooleanProperty();
-                observable.addListener((obs, wasSelected, isNowSelected) -> {
-                    if (isNowSelected) {
-                        checkedItem.add(task);
-                    }
+        itemList.setCellFactory(CheckBoxListCell.forListView(task -> {
+            BooleanProperty observable = new SimpleBooleanProperty();
+            observable.addListener((obs, wasSelected, isNowSelected) -> {
+                if (isNowSelected) {
+                    checkedItem.add(task);
+                }
 
-                });
-                return observable;
-            }
+            });
+            return observable;
         }));
 
 
-        checkedItem.addListener(new ListChangeListener<Task>() {
-            @Override
-            public void onChanged(Change<? extends Task> c) {
-                System.out.println("Changed on " + c);
-                if(c.next()){
-                    itemList_completed.getItems().add(checkedItem.get(c.getFrom()));
-                }
+        checkedItem.addListener((ListChangeListener<Task>) c -> {
+            System.out.println("Changed on " + c);
+            if(c.next()){
+                itemList_completed.getItems().add(checkedItem.get(c.getFrom()));
             }
         });
 
@@ -276,4 +285,11 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+    public void load() throws IOException {
+        System.out.println("load");
+
+    }
 }
+

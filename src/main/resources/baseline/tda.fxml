@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseline.Controller">
    <children>
-      <AnchorPane layoutX="161.0" prefHeight="620.0" prefWidth="639.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="leftPane" layoutX="164.0" prefHeight="620.0" prefWidth="636.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="completedPane" layoutX="10.0" layoutY="10.0" prefHeight="620.0" prefWidth="639.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -148,6 +149,84 @@
                   </VBox>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="newPane" prefHeight="620.0" prefWidth="639.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox prefHeight="620.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
+                           <children>
+                              <TextField fx:id="listTitle2" prefHeight="78.0" prefWidth="601.0" promptText="New List" styleClass="textField" stylesheets="@newPaneStyle.css">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button fx:id="deleteButton1" mnemonicParsing="false" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons/bin.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" right="15.0" top="25.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="490.0" prefWidth="580.0">
+                           <children>
+                              <ListView fx:id="itemList1" prefHeight="479.0" prefWidth="580.0" />
+                           </children>
+                        </VBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
+                           <children>
+                              <Button fx:id="deleteItem1" mnemonicParsing="false" onMouseClicked="#deleted" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons/delete.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="10.0" right="5.0" top="18.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <TextField fx:id="itemText1" prefHeight="38.0" prefWidth="421.0" promptText="Enter your notes here" styleClass="textField2" stylesheets="@newPaneStyle.css">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="15.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <DatePicker fx:id="datePicker1" prefHeight="35.0" prefWidth="109.0" styleClass="date-picker" stylesheets="@newPaneStyle.css">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="5.0" top="15.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                              <Button fx:id="enterButton1" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons/enter.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" right="10.0" top="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="5.0" prefHeight="620.0" prefWidth="165.0" style="-fx-background-color: #e7e7e7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="635.0" AnchorPane.topAnchor="0.0">
@@ -209,7 +288,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Line>
-                  <Button fx:id="newButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#addList" prefHeight="38.0" prefWidth="265.0" stylesheets="@style.css" text="New List" textFill="WHITE">
+                  <Button fx:id="newButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#tabButtonAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="265.0" stylesheets="@style.css" text="New List" textFill="WHITE">
                      <padding>
                         <Insets left="25.0" />
                      </padding>
@@ -221,7 +300,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <VBox fx:id="newListVbox" prefHeight="395.0" prefWidth="220.0" />
+                  <ScrollPane prefHeight="373.0" prefWidth="150.0">
+                     <content>
+                        <VBox fx:id="newListVbox" prefHeight="362.0" prefWidth="155.0" />
+                     </content>
+                  </ScrollPane>
                </children>
             </VBox>
          </children>
