@@ -16,22 +16,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.LocalDateStringConverter;
 
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable {
 
@@ -185,8 +182,6 @@ public class Controller implements Initializable {
         planPane.toFront();
     }
 
-
-
     @FXML
     void incomplete(MouseEvent event) {
         itemList_incomplete.getItems().clear();
@@ -216,54 +211,69 @@ public class Controller implements Initializable {
         }
     }
 
-    private static void writeToTextFile(String filename, ObservableList<Task> tasks) throws IOException {
-        FileWriter writer = new FileWriter("docs/" + filename);
+    private static void writeToTextFile(File filename, ObservableList<Task> tasks) throws IOException {
+        FileWriter writer = new FileWriter(filename);
         for(Task task : tasks){
-            writer.write(task.getDescription()+ "/" + task.getDate());
-            writer.write(",");
+            writer.write(task.getDescription()+ "/ " + task.getDate());
+            writer.write("\n");
         }
         writer.close();
     }
 
-    private static List<Task> readStudents(String filename) throws IOException {
+    private static List<Task> readTask(String filename) throws IOException {
         List<Task> tasks = new ArrayList<>();
 
-        BufferedReader reader = Files.newBufferedReader(Path.of("docs/" + filename));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] names = line.split(",");
-            String[] dateString = line.split("/");
+        File file = new File(filename);
+        Scanner reader = new Scanner(file);
 
-            // Add the student to the list
-            tasks.add(new Task(dateString[0], names[0]));
+        while (reader.hasNextLine()) {
+            String line = reader.nextLine();
+            String[] separator = line.split("/");
+            String date = separator[1];
+            String item = separator[0];
 
+            Task newItem = new Task(date, item);
+            tasks.add(newItem);
         }
-
         return tasks;
     }
 
 
     @FXML
     void loadList(ActionEvent event) throws IOException {
-        List<Task> inputStudents = null;
-        try {
-            inputStudents = readStudents("test.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        if (inputStudents != null) {
-            for (Task tasks : inputStudents) {
-                itemList.getItems().add(tasks);
-                item.add(tasks);
+        FileChooser file = new FileChooser();
+        File selectedFile = file.showOpenDialog(null);
+        List<Task> tasks;
+
+        if(selectedFile != null){
+            try {
+                tasks = readTask(selectedFile.getAbsolutePath());
+                for(Task t: tasks){
+                    itemList.getItems().add(t);
+                    item.add(t);
+                }
+            }catch (FileNotFoundException e){
+                e.printStackTrace();
             }
         }
     }
 
     @FXML
     void saveList(ActionEvent event) throws IOException {
-        writeToTextFile("test.txt", item);
-        System.out.println("saved");
-    }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("txt","*.txt"));
+        fileChooser.setTitle("Save");
 
+        File f = fileChooser.showSaveDialog(new Stage());
+
+        try{
+            if(f != null){
+                writeToTextFile(f, item);
+            }
+            System.out.println("saved");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
