@@ -95,7 +95,25 @@ public class Controller implements Initializable {
     private Pane planPane, completedPane, incompletePane;
 
     @FXML
-    public AnchorPane leftPane, newPane1, newPane2, newPane3, newPane4;
+    private AnchorPane leftPane, newPane1, newPane2, newPane3, newPane4;
+
+    @FXML
+    private Button deleteButton_new4, deleteButton_new3, deleteButton_new2, deleteButton_new1;
+
+    @FXML
+    private ListView<Task> itemList_new4, itemList_new3, itemList_new2, itemList_new1;
+
+    @FXML
+    private Button deleteItem_new4, deleteItem_new3, deleteItem_new2, deleteItem_new1;
+
+    @FXML
+    private TextField itemText_new4, itemText_new3, itemText_new2, itemText_new1;
+
+    @FXML
+    private DatePicker datePicker4, datePicker_new3, datePicker2, datePicker_new1;
+
+    @FXML
+    private Button enterButton_new4, enterButton_new3, enterButton_new2, enterButton_new1;
 
     private static int count = 0;
 
@@ -191,6 +209,31 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        listViewCheckBox();
+
+
+        checkedItem.addListener((ListChangeListener<Task>) c -> {
+            System.out.println("Changed on " + c);
+            if(c.next()){
+                itemList_completed.getItems().add(checkedItem.get(c.getFrom()));
+            }
+        });
+
+        listTitleChanged();
+
+
+
+        newButton.setOnMousePressed(event -> count++);
+
+        newButtonVisibility();
+
+        planPane.toFront();
+
+
+    }
+
+    private void listViewCheckBox(){
+        // Plan tab
         itemList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
                 -> itemText.setText(String.valueOf(itemList.getSelectionModel().getSelectedItem())));
 
@@ -206,38 +249,106 @@ public class Controller implements Initializable {
             return observable;
         }));
 
+        // New list 1 tab
+        itemList_new1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
+                -> itemText.setText(String.valueOf(itemList_new1.getSelectionModel().getSelectedItem())));
 
-        checkedItem.addListener((ListChangeListener<Task>) c -> {
-            System.out.println("Changed on " + c);
-            if(c.next()){
-                itemList_completed.getItems().add(checkedItem.get(c.getFrom()));
-            }
-        });
 
-        listTitle_new1.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if(event.getCode().equals(KeyCode.ENTER)){
-                    listTitle_new1.setText(listTitle_new1.getText());
+        itemList_new1.setCellFactory(CheckBoxListCell.forListView(task -> {
+            BooleanProperty observable = new SimpleBooleanProperty();
+            observable.addListener((obs, wasSelected, isNowSelected) -> {
+                if (isNowSelected) {
+                    checkedItem.add(task);
                 }
-            }
-        });
 
-        newButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                count++;
-            }
-        });
+            });
+            return observable;
+        }));
 
+        // New list 2 tab
+        itemList_new2.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
+                -> itemText_new2.setText(String.valueOf(itemList_new2.getSelectionModel().getSelectedItem())));
+
+
+        itemList_new2.setCellFactory(CheckBoxListCell.forListView(task -> {
+            BooleanProperty observable = new SimpleBooleanProperty();
+            observable.addListener((obs, wasSelected, isNowSelected) -> {
+                if (isNowSelected) {
+                    checkedItem.add(task);
+                }
+
+            });
+            return observable;
+        }));
+
+        // New list 3 tab
+        itemList_new3.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
+                -> itemText_new3.setText(String.valueOf(itemList_new3.getSelectionModel().getSelectedItem())));
+
+
+        itemList_new3.setCellFactory(CheckBoxListCell.forListView(task -> {
+            BooleanProperty observable = new SimpleBooleanProperty();
+            observable.addListener((obs, wasSelected, isNowSelected) -> {
+                if (isNowSelected) {
+                    checkedItem.add(task);
+                }
+
+            });
+            return observable;
+        }));
+
+        // New list 3 tab
+        itemList_new4.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
+                -> itemText_new4.setText(String.valueOf(itemList_new4.getSelectionModel().getSelectedItem())));
+
+
+        itemList_new4.setCellFactory(CheckBoxListCell.forListView(task -> {
+            BooleanProperty observable = new SimpleBooleanProperty();
+            observable.addListener((obs, wasSelected, isNowSelected) -> {
+                if (isNowSelected) {
+                    checkedItem.add(task);
+                }
+
+            });
+            return observable;
+        }));
+    }
+
+    private void newButtonVisibility(){
         newButton1.setVisible(false);
         newButton2.setVisible(false);
         newButton3.setVisible(false);
         newButton4.setVisible(false);
+    }
 
-        planPane.toFront();
+    private void listTitleChanged(){
+        listTitle_new1.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+                listTitle_new1.setText(listTitle_new1.getText());
+                newButton1.setText(listTitle_new1.getText());
+            }
+        });
 
+        listTitle_new2.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+                listTitle_new2.setText(listTitle_new2.getText());
+                newButton2.setText(listTitle_new2.getText());
+            }
+        });
 
+        listTitle_new3.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+                listTitle_new3.setText(listTitle_new3.getText());
+                newButton3.setText(listTitle_new3.getText());
+            }
+        });
+
+        listTitle_new4.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+                listTitle_new4.setText(listTitle_new4.getText());
+                newButton4.setText(listTitle_new4.getText());
+            }
+        });
     }
 
     @FXML
