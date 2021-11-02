@@ -1,0 +1,21 @@
+//BUTTONS TAB
+.button {
+    -fx-background-color:   transparent;
+    -fx-text-fill: black;
+    -fx-text-alignment: left;
+}
+
+.button:hover {
+    -fx-background-color:  rgba(0,0,0,0.1);
+    -fx-text-fill: black;
+}
+
+.button:pressed {
+    -fx-background-color:  rgba(0,0,0,0.1);
+    -fx-text-fill: black;
+}
+
+.button:focused {
+    -fx-background-color: rgba(0,0,0,0.1);
+    -fx-text-fill: black;
+}

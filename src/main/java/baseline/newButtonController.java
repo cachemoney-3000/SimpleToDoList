@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class newButtonController implements Initializable {
+    private Controller main;
 
     @FXML
     public Button newButton;
@@ -25,17 +27,20 @@ public class newButtonController implements Initializable {
 
     @FXML
     void addList(MouseEvent event) throws IOException {
-        System.out.println("new button");
-        Controller c = new Controller();
-        c.load();
 
+    }
+
+    public String clicked(){
+        return "clicked";
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
     }
 
+    public void setText(int text){
+        newButton.setText("New List " + text);
+    }
 
 }

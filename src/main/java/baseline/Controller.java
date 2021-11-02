@@ -7,12 +7,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -66,13 +74,13 @@ public class Controller implements Initializable {
     private TextField itemText;
 
     @FXML
-    private TextField listTitle;
+    private TextField listTitle, listTitle_new1, listTitle_new2, listTitle_new3, listTitle_new4;
 
     @FXML
     private MenuItem loadButton;
 
     @FXML
-    private Button newButton;
+    private Button newButton, newButton1, newButton2, newButton3, newButton4;
 
     @FXML
     private VBox newListVbox;
@@ -87,7 +95,9 @@ public class Controller implements Initializable {
     private Pane planPane, completedPane, incompletePane;
 
     @FXML
-    public AnchorPane leftPane, newPane;
+    public AnchorPane leftPane, newPane1, newPane2, newPane3, newPane4;
+
+    private static int count = 0;
 
     @FXML
     void tabButtonAction(ActionEvent event){
@@ -103,19 +113,35 @@ public class Controller implements Initializable {
             System.out.println("incomplete");
         }
         else if(event.getSource() == newButton){
-            //newPane.toFront();
+            if(count == 1)
+                newButton1.setVisible(true);
+
+            if (count == 2)
+                newButton2.setVisible(true);
+
+            else if (count == 3)
+                newButton3.setVisible(true);
+
+            else if (count == 4)
+                newButton4.setVisible(true);
         }
 
     }
 
     @FXML
+    void newListAction(ActionEvent event){
+        if(event.getSource() == newButton1)
+            newPane1.toFront();
+        else if(event.getSource() == newButton2)
+            newPane2.toFront();
+        else if(event.getSource() == newButton3)
+            newPane3.toFront();
+        else if(event.getSource() == newButton4)
+            newPane4.toFront();
+    }
+
+    @FXML
     void addList(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Application.class.getResource("newButton.fxml"));
-        newListVbox.getChildren().add(loader.load());
-
-        FXMLLoader loader1 = new FXMLLoader(Application.class.getResource("newPane.fxml"));
-        leftPane.getChildren().add(loader1.load());
-
     }
 
     public ObservableList<Task> item = FXCollections.observableArrayList();
@@ -188,7 +214,30 @@ public class Controller implements Initializable {
             }
         });
 
+        listTitle_new1.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode().equals(KeyCode.ENTER)){
+                    listTitle_new1.setText(listTitle_new1.getText());
+                }
+            }
+        });
+
+        newButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                count++;
+            }
+        });
+
+        newButton1.setVisible(false);
+        newButton2.setVisible(false);
+        newButton3.setVisible(false);
+        newButton4.setVisible(false);
+
         planPane.toFront();
+
+
     }
 
     @FXML
@@ -286,10 +335,5 @@ public class Controller implements Initializable {
         }
     }
 
-
-    public void load() throws IOException {
-        System.out.println("load");
-
-    }
 }
 

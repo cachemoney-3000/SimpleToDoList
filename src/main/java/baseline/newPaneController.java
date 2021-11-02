@@ -43,7 +43,6 @@ public class newPaneController implements Initializable {
     @FXML
     private TextField listTitle;
 
-    @FXML
     public Pane newPane;
 
     @FXML
