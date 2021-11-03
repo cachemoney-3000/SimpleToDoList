@@ -110,7 +110,7 @@ public class Controller implements Initializable {
     private TextField itemText_new4, itemText_new3, itemText_new2, itemText_new1;
 
     @FXML
-    private DatePicker datePicker4, datePicker_new3, datePicker2, datePicker_new1;
+    private DatePicker datePicker_new4, datePicker_new3, datePicker_new2, datePicker_new1;
 
     @FXML
     private Button enterButton_new4, enterButton_new3, enterButton_new2, enterButton_new1;
@@ -118,7 +118,8 @@ public class Controller implements Initializable {
     private static int count = 0;
 
     @FXML
-    void tabButtonAction(ActionEvent event){
+    void tabButtonAction(ActionEvent event) throws IOException {
+
 
         if(event.getSource()==planButton){
             planPane.toFront();
@@ -142,6 +143,10 @@ public class Controller implements Initializable {
 
             else if (count == 4)
                 newButton4.setVisible(true);
+            else if (count > 4){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("newButton.fxml"));
+                newListVbox.getChildren().add(loader.load());
+            }
         }
 
     }
@@ -203,6 +208,159 @@ public class Controller implements Initializable {
             itemText.setText("");
         }
     }
+
+    @FXML
+    void enteredItem_new1(MouseEvent event) {
+        //create new Event by getting values from gui.
+        String date;
+
+        if(datePicker_new1.getValue()==null){
+            date = "";
+        }
+        else {
+            date = datePicker_new1.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+
+        var newItem = new Task(date, itemText_new1.getText());
+
+        int index = itemList_new1.getSelectionModel().getSelectedIndex();
+        if(index >= 0){
+            itemList_new1.getItems().remove(index);
+            item.remove(index);
+            itemList_new1.getItems().add(index, newItem);
+            item.add(index, newItem);
+
+            datePicker_new1.getEditor().clear();
+            datePicker_new1.setValue(null);
+        }
+
+        else{
+            // add the new event to the list
+            itemList_new1.getItems().add(newItem);
+            item.add(newItem);
+
+            datePicker_new1.getEditor().clear();
+            datePicker_new1.setValue(null);
+
+            // set text empty
+            itemText_new1.setText("");
+        }
+    }
+
+    @FXML
+    void enteredItem_new2(MouseEvent event) {
+        //create new Event by getting values from gui.
+        String date;
+
+        if(datePicker_new2.getValue()==null){
+            date = "";
+        }
+        else {
+            date = datePicker_new2.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+
+        var newItem = new Task(date, itemText_new2.getText());
+
+        int index = itemList_new2.getSelectionModel().getSelectedIndex();
+        if(index >= 0){
+            itemList_new2.getItems().remove(index);
+            item.remove(index);
+            itemList_new2.getItems().add(index, newItem);
+            item.add(index, newItem);
+
+            datePicker_new2.getEditor().clear();
+            datePicker_new2.setValue(null);
+        }
+
+        else{
+            // add the new event to the list
+            itemList_new2.getItems().add(newItem);
+            item.add(newItem);
+
+            datePicker_new2.getEditor().clear();
+            datePicker_new2.setValue(null);
+
+            // set text empty
+            itemText_new2.setText("");
+        }
+    }
+
+    @FXML
+    void enteredItem_new3(MouseEvent event) {
+        //create new Event by getting values from gui.
+        String date;
+
+        if(datePicker_new3.getValue()==null){
+            date = "";
+        }
+        else {
+            date = datePicker_new3.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+
+        var newItem = new Task(date, itemText_new3.getText());
+
+        int index = itemList_new3.getSelectionModel().getSelectedIndex();
+        if(index >= 0){
+            itemList_new3.getItems().remove(index);
+            item.remove(index);
+            itemList_new3.getItems().add(index, newItem);
+            item.add(index, newItem);
+
+            datePicker_new3.getEditor().clear();
+            datePicker_new3.setValue(null);
+        }
+
+        else{
+            // add the new event to the list
+            itemList_new3.getItems().add(newItem);
+            item.add(newItem);
+
+            datePicker_new3.getEditor().clear();
+            datePicker_new3.setValue(null);
+
+            // set text empty
+            itemText_new3.setText("");
+        }
+    }
+
+    @FXML
+    void enteredItem_new4(MouseEvent event) {
+        //create new Event by getting values from gui.
+        String date;
+
+        if(datePicker_new4.getValue()==null){
+            date = "";
+        }
+        else {
+            date = datePicker_new4.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+
+        var newItem = new Task(date, itemText_new4.getText());
+
+        int index = itemList_new4.getSelectionModel().getSelectedIndex();
+        if(index >= 0){
+            itemList_new4.getItems().remove(index);
+            item.remove(index);
+            itemList_new4.getItems().add(index, newItem);
+            item.add(index, newItem);
+
+            datePicker_new4.getEditor().clear();
+            datePicker_new4.setValue(null);
+        }
+
+        else{
+            // add the new event to the list
+            itemList_new4.getItems().add(newItem);
+            item.add(newItem);
+
+            datePicker_new4.getEditor().clear();
+            datePicker_new4.setValue(null);
+
+            // set text empty
+            itemText_new4.setText("");
+        }
+    }
+
 
 
 
@@ -379,6 +537,44 @@ public class Controller implements Initializable {
             item.remove(index);
         }
     }
+
+    @FXML
+    void deleted_new1(MouseEvent event) {
+        int index = itemList_new1.getSelectionModel().getSelectedIndex();
+        if(index >= 0){
+            itemList_new1.getItems().remove(index);
+            item.remove(index);
+        }
+    }
+
+    @FXML
+    void deleted_new2(MouseEvent event) {
+        int index = itemList_new2.getSelectionModel().getSelectedIndex();
+        if(index >= 0){
+            itemList_new2.getItems().remove(index);
+            item.remove(index);
+        }
+    }
+
+    @FXML
+    void deleted_new3(MouseEvent event) {
+        int index = itemList_new3.getSelectionModel().getSelectedIndex();
+        if(index >= 0){
+            itemList_new3.getItems().remove(index);
+            item.remove(index);
+        }
+    }
+
+    @FXML
+    void deleted_new4(MouseEvent event) {
+        int index = itemList_new4.getSelectionModel().getSelectedIndex();
+        if(index >= 0){
+            itemList_new4.getItems().remove(index);
+            item.remove(index);
+        }
+    }
+
+
 
     private static void writeToTextFile(File filename, ObservableList<Task> tasks) throws IOException {
         FileWriter writer = new FileWriter(filename);

@@ -126,7 +126,7 @@
                                     <Insets bottom="15.0" top="15.0" />
                                  </HBox.margin>
                               </TextField>
-                              <DatePicker fx:id="datePicker" prefHeight="35.0" prefWidth="109.0" styleClass="date-picker" stylesheets="@style.css">
+                              <DatePicker fx:id="datePicker" prefHeight="35.0" prefWidth="109.0" promptText="Pick a date" styleClass="date-picker" stylesheets="@style.css">
                                  <HBox.margin>
                                     <Insets bottom="15.0" left="5.0" top="15.0" />
                                  </HBox.margin>
@@ -184,7 +184,7 @@
                         </VBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
                            <children>
-                              <Button fx:id="deleteItem_new1" mnemonicParsing="false" onMouseClicked="#deleted" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="deleteItem_new1" mnemonicParsing="false" onMouseClicked="#deleted_new1" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -204,12 +204,12 @@
                                     <Insets bottom="15.0" top="15.0" />
                                  </HBox.margin>
                               </TextField>
-                              <DatePicker fx:id="datePicker_new1" prefHeight="35.0" prefWidth="109.0" styleClass="date-picker" stylesheets="@newPaneStyle.css">
+                              <DatePicker fx:id="datePicker_new1" prefHeight="35.0" prefWidth="109.0" promptText="Pick a date" styleClass="date-picker" stylesheets="@newPaneStyle.css">
                                  <HBox.margin>
                                     <Insets bottom="15.0" left="5.0" top="15.0" />
                                  </HBox.margin>
                               </DatePicker>
-                              <Button fx:id="enterButton_new1" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="enterButton_new1" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem_new1" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -262,7 +262,7 @@
                         </VBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
                            <children>
-                              <Button fx:id="deleteItem_new2" mnemonicParsing="false" onMouseClicked="#deleted" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="deleteItem_new2" mnemonicParsing="false" onMouseClicked="#deleted_new2" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -282,12 +282,12 @@
                                     <Insets bottom="15.0" top="15.0" />
                                  </HBox.margin>
                               </TextField>
-                              <DatePicker fx:id="datePicker_new2" prefHeight="35.0" prefWidth="109.0" styleClass="date-picker" stylesheets="@newPaneStyle.css">
+                              <DatePicker fx:id="datePicker_new2" prefHeight="35.0" prefWidth="109.0" promptText="Pick a date" styleClass="date-picker" stylesheets="@newPaneStyle.css">
                                  <HBox.margin>
                                     <Insets bottom="15.0" left="5.0" top="15.0" />
                                  </HBox.margin>
                               </DatePicker>
-                              <Button fx:id="enterButton_new2" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="enterButton_new2" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem_new2" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -340,7 +340,7 @@
                         </VBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
                            <children>
-                              <Button fx:id="deleteItem_new3" mnemonicParsing="false" onMouseClicked="#deleted" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="deleteItem_new3" mnemonicParsing="false" onMouseClicked="#deleted_new3" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -360,12 +360,12 @@
                                     <Insets bottom="15.0" top="15.0" />
                                  </HBox.margin>
                               </TextField>
-                              <DatePicker fx:id="datePicker_new3" prefHeight="35.0" prefWidth="109.0" styleClass="date-picker" stylesheets="@newPaneStyle.css">
+                              <DatePicker fx:id="datePicker_new3" prefHeight="35.0" prefWidth="109.0" promptText="Pick a date" styleClass="date-picker" stylesheets="@newPaneStyle.css">
                                  <HBox.margin>
                                     <Insets bottom="15.0" left="5.0" top="15.0" />
                                  </HBox.margin>
                               </DatePicker>
-                              <Button fx:id="enterButton_new3" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="enterButton_new3" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem_new3" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -418,7 +418,7 @@
                         </VBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
                            <children>
-                              <Button fx:id="deleteItem_new4" mnemonicParsing="false" onMouseClicked="#deleted" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="deleteItem_new4" mnemonicParsing="false" onMouseClicked="#deleted_new4" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -438,12 +438,12 @@
                                     <Insets bottom="15.0" top="15.0" />
                                  </HBox.margin>
                               </TextField>
-                              <DatePicker fx:id="datePicker4" prefHeight="35.0" prefWidth="109.0" styleClass="date-picker" stylesheets="@newPaneStyle.css">
+                              <DatePicker fx:id="datePicker_new4" prefHeight="35.0" prefWidth="109.0" promptText="Pick a date" styleClass="date-picker" stylesheets="@newPaneStyle.css">
                                  <HBox.margin>
                                     <Insets bottom="15.0" left="5.0" top="15.0" />
                                  </HBox.margin>
                               </DatePicker>
-                              <Button fx:id="enterButton_new4" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="enterButton_new4" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem_new4" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -538,7 +538,7 @@
                      <content>
                         <VBox fx:id="newListVbox" prefHeight="362.0" prefWidth="155.0">
                            <children>
-                              <Button fx:id="newButton1" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="265.0" stylesheets="@style.css" text="New1" textFill="WHITE">
+                              <Button fx:id="newButton1" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="155.0" stylesheets="@style.css" text="New1" textFill="WHITE">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
@@ -550,7 +550,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="newButton2" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="265.0" stylesheets="@style.css" text="New2" textFill="WHITE">
+                              <Button fx:id="newButton2" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="155.0" stylesheets="@style.css" text="New2" textFill="WHITE">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
@@ -562,7 +562,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="newButton3" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="265.0" stylesheets="@style.css" text="New3" textFill="WHITE">
+                              <Button fx:id="newButton3" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="155.0" stylesheets="@style.css" text="New3" textFill="WHITE">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>
@@ -574,7 +574,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="newButton4" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="265.0" stylesheets="@style.css" text="New4" textFill="WHITE">
+                              <Button fx:id="newButton4" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="155.0" stylesheets="@style.css" text="New4" textFill="WHITE">
                                  <padding>
                                     <Insets left="25.0" />
                                  </padding>

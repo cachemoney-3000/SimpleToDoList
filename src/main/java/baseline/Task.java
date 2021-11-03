@@ -1,20 +1,8 @@
 package baseline;
 
-import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Objects;
 
-public class Task implements Serializable{
-
-    private static final long serialVersionUID = 1L;
-
-    private String date;
-
-    private String description;
-
-    public Task(String date, String description) {
-        this.date = date;
-        this.description = description;
-    }
+public record Task(String date, String description){
 
     public String getDate() {
         return date;
@@ -25,14 +13,12 @@ public class Task implements Serializable{
     }
 
 
-
     // this makes LocalEvents dispaly nicely in GUI
     @Override
     public String toString() {
-        if(date == ""){
+        if (Objects.equals(date, "")) {
             return "|Task: " + description;
-        }
-        else{
+        } else {
             return "Due Date: " + date + " |Task: " + description;
         }
 
