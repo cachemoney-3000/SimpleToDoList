@@ -401,7 +401,7 @@
                         </HBox>
                         <VBox prefHeight="490.0" prefWidth="580.0">
                            <children>
-                              <ListView fx:id="itemList_new4" prefHeight="479.0" prefWidth="580.0" />
+                              <ListView fx:id="itemList_new4" prefHeight="479.0" prefWidth="580.0" styleClass="pretty-list-view" stylesheets="@listView.css" />
                            </children>
                         </VBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
