@@ -104,6 +104,11 @@ public class Controller implements Initializable {
     private static int count = 0;
 
     @FXML
+    void deleteList(MouseEvent event) {
+        itemList.getItems().clear();
+        item.clear();
+    }
+    @FXML
     void deleteList_new1(MouseEvent event) {
         newPane1.getChildren().clear();
         newListVbox.getChildren().remove(newButton1);
@@ -481,6 +486,13 @@ public class Controller implements Initializable {
     }
 
     private void listTitleChanged(){
+        listTitle.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+                listTitle.setText(listTitle.getText());
+                planButton.setText(listTitle.getText());
+            }
+        });
+
         listTitle_new1.setOnKeyPressed(event -> {
             if(event.getCode().equals(KeyCode.ENTER)){
                 listTitle_new1.setText(listTitle_new1.getText());
