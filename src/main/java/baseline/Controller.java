@@ -48,7 +48,6 @@ public class Controller implements Initializable {
     @FXML
     private DatePicker datePicker;
 
-
     @FXML
     private Button enterButton;
 
@@ -57,9 +56,6 @@ public class Controller implements Initializable {
 
     @FXML
     private Button deleteItem;
-
-    @FXML
-    private Button editItem;
 
     @FXML
     private ListView<Task> itemList;
@@ -118,9 +114,28 @@ public class Controller implements Initializable {
     private static int count = 0;
 
     @FXML
+    void deleteList_new1(MouseEvent event) {
+        newPane1.getChildren().clear();
+        newListVbox.getChildren().remove(newButton1);
+    }
+    @FXML
+    void deleteList_new2(MouseEvent event){
+        newPane2.getChildren().clear();
+        newListVbox.getChildren().remove(newButton2);
+    }
+    @FXML
+    void deleteList_new3(MouseEvent event){
+        newPane3.getChildren().clear();
+        newListVbox.getChildren().remove(newButton4);
+    }
+    @FXML
+    void deleteList_new4(MouseEvent event){
+        newPane4.getChildren().clear();
+        newListVbox.getChildren().remove(newButton4);
+    }
+
+    @FXML
     void tabButtonAction(ActionEvent event) throws IOException {
-
-
         if(event.getSource()==planButton){
             planPane.toFront();
         }

@@ -85,18 +85,6 @@
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="deleteButton" mnemonicParsing="false" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/bin.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="25.0" right="15.0" top="25.0" />
-                                 </HBox.margin>
-                              </Button>
                            </children>
                         </HBox>
                         <VBox prefHeight="490.0" prefWidth="580.0">
@@ -163,7 +151,7 @@
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="deleteButton_new1" mnemonicParsing="false" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="deleteButton_new1" mnemonicParsing="false" onMouseClicked="#deleteList_new1" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -241,7 +229,7 @@
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="deleteButton_new2" mnemonicParsing="false" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="deleteButton_new2" mnemonicParsing="false" onMouseClicked="#deleteList_new2" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -319,7 +307,7 @@
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="deleteButton_new3" mnemonicParsing="false" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="deleteButton_new3" mnemonicParsing="false" onMouseClicked="#deleteList_new3" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -397,7 +385,7 @@
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="deleteButton_new4" mnemonicParsing="false" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="deleteButton_new4" mnemonicParsing="false" onMouseClicked="#deleteList_new4" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
