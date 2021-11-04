@@ -7,19 +7,17 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseline.Controller">
    <children>
-      <AnchorPane fx:id="leftPane" layoutX="164.0" prefHeight="620.0" prefWidth="636.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="164.0" prefHeight="620.0" prefWidth="636.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="completedPane" layoutX="10.0" layoutY="10.0" prefHeight="620.0" prefWidth="639.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -85,7 +83,7 @@
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="deleteButton" mnemonicParsing="false" onMouseClicked="#deleteList" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonAction" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -131,319 +129,7 @@
                                     <Insets bottom="15.0" left="5.0" top="15.0" />
                                  </HBox.margin>
                               </DatePicker>
-                              <Button fx:id="enterButton" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/enter.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" right="10.0" top="15.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="newPane1" prefHeight="620.0" prefWidth="639.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox prefHeight="620.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <HBox prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
-                           <children>
-                              <TextField fx:id="listTitle_new1" prefHeight="78.0" prefWidth="601.0" promptText="New1" styleClass="textField" stylesheets="@newPaneStyle.css">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <Button fx:id="deleteButton_new1" mnemonicParsing="false" onMouseClicked="#deleteList_new1" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/bin.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="25.0" right="15.0" top="25.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="490.0" prefWidth="580.0">
-                           <children>
-                              <ListView fx:id="itemList_new1" prefHeight="479.0" prefWidth="580.0" />
-                           </children>
-                        </VBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
-                           <children>
-                              <Button fx:id="deleteItem_new1" mnemonicParsing="false" onMouseClicked="#deleted_new1" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/delete.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" left="10.0" right="5.0" top="18.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <TextField fx:id="itemText_new1" prefHeight="38.0" prefWidth="421.0" promptText="Enter your notes here" styleClass="textField2" stylesheets="@newPaneStyle.css">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" top="15.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <DatePicker fx:id="datePicker_new1" prefHeight="35.0" prefWidth="109.0" promptText="Pick a date" styleClass="date-picker" stylesheets="@newPaneStyle.css">
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" left="5.0" top="15.0" />
-                                 </HBox.margin>
-                              </DatePicker>
-                              <Button fx:id="enterButton_new1" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem_new1" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/enter.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" right="10.0" top="15.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="newPane2" layoutX="10.0" layoutY="10.0" prefHeight="620.0" prefWidth="636.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox prefHeight="620.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <HBox prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
-                           <children>
-                              <TextField fx:id="listTitle_new2" prefHeight="78.0" prefWidth="601.0" promptText="New2" styleClass="textField" stylesheets="@newPaneStyle.css">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <Button fx:id="deleteButton_new2" mnemonicParsing="false" onMouseClicked="#deleteList_new2" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/bin.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="25.0" right="15.0" top="25.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="490.0" prefWidth="580.0">
-                           <children>
-                              <ListView fx:id="itemList_new2" prefHeight="479.0" prefWidth="580.0" />
-                           </children>
-                        </VBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
-                           <children>
-                              <Button fx:id="deleteItem_new2" mnemonicParsing="false" onMouseClicked="#deleted_new2" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/delete.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" left="10.0" right="5.0" top="18.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <TextField fx:id="itemText_new2" prefHeight="38.0" prefWidth="421.0" promptText="Enter your notes here" styleClass="textField2" stylesheets="@newPaneStyle.css">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" top="15.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <DatePicker fx:id="datePicker_new2" prefHeight="35.0" prefWidth="109.0" promptText="Pick a date" styleClass="date-picker" stylesheets="@newPaneStyle.css">
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" left="5.0" top="15.0" />
-                                 </HBox.margin>
-                              </DatePicker>
-                              <Button fx:id="enterButton_new2" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem_new2" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/enter.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" right="10.0" top="15.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="newPane3" layoutX="10.0" layoutY="10.0" prefHeight="620.0" prefWidth="636.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox prefHeight="620.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <HBox prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
-                           <children>
-                              <TextField fx:id="listTitle_new3" prefHeight="78.0" prefWidth="601.0" promptText="New3" styleClass="textField" stylesheets="@newPaneStyle.css">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <Button fx:id="deleteButton_new3" mnemonicParsing="false" onMouseClicked="#deleteList_new3" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/bin.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="25.0" right="15.0" top="25.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="490.0" prefWidth="580.0">
-                           <children>
-                              <ListView fx:id="itemList_new3" prefHeight="479.0" prefWidth="580.0" />
-                           </children>
-                        </VBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
-                           <children>
-                              <Button fx:id="deleteItem_new3" mnemonicParsing="false" onMouseClicked="#deleted_new3" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/delete.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" left="10.0" right="5.0" top="18.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <TextField fx:id="itemText_new3" prefHeight="38.0" prefWidth="421.0" promptText="Enter your notes here" styleClass="textField2" stylesheets="@newPaneStyle.css">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" top="15.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <DatePicker fx:id="datePicker_new3" prefHeight="35.0" prefWidth="109.0" promptText="Pick a date" styleClass="date-picker" stylesheets="@newPaneStyle.css">
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" left="5.0" top="15.0" />
-                                 </HBox.margin>
-                              </DatePicker>
-                              <Button fx:id="enterButton_new3" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem_new3" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/enter.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" right="10.0" top="15.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="newPane4" layoutX="10.0" layoutY="10.0" prefHeight="620.0" prefWidth="636.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox prefHeight="620.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <HBox prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
-                           <children>
-                              <TextField fx:id="listTitle_new4" prefHeight="78.0" prefWidth="601.0" promptText="New4" styleClass="textField" stylesheets="@newPaneStyle.css">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <Button fx:id="deleteButton_new4" mnemonicParsing="false" onMouseClicked="#deleteList_new4" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/bin.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="25.0" right="15.0" top="25.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="490.0" prefWidth="580.0">
-                           <children>
-                              <ListView fx:id="itemList_new4" prefHeight="479.0" prefWidth="580.0" styleClass="pretty-list-view" stylesheets="@listView.css" />
-                           </children>
-                        </VBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #34495E;">
-                           <children>
-                              <Button fx:id="deleteItem_new4" mnemonicParsing="false" onMouseClicked="#deleted_new4" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/delete.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" left="10.0" right="5.0" top="18.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <TextField fx:id="itemText_new4" prefHeight="38.0" prefWidth="421.0" promptText="Enter your notes here" styleClass="textField2" stylesheets="@newPaneStyle.css">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" top="15.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <DatePicker fx:id="datePicker_new4" prefHeight="35.0" prefWidth="109.0" promptText="Pick a date" styleClass="date-picker" stylesheets="@newPaneStyle.css">
-                                 <HBox.margin>
-                                    <Insets bottom="15.0" left="5.0" top="15.0" />
-                                 </HBox.margin>
-                              </DatePicker>
-                              <Button fx:id="enterButton_new4" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#enteredItem_new4" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
+                              <Button fx:id="enterButton" layoutX="536.0" layoutY="25.0" mnemonicParsing="false" onAction="#enteredItemAction" style="-fx-background-radius: 1em;" styleClass="button2" stylesheets="@style.css">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -505,7 +191,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="incompleteButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#tabButtonAction" onMouseClicked="#incomplete" onMouseEntered="#viewList" prefHeight="38.0" prefWidth="265.0" stylesheets="@style.css" text="Incomplete" textFill="WHITE">
+                  <Button fx:id="incompleteButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#tabButtonAction" onMouseClicked="#incomplete" prefHeight="38.0" prefWidth="265.0" stylesheets="@style.css" text="Incomplete" textFill="WHITE">
                      <padding>
                         <Insets left="25.0" />
                      </padding>
@@ -517,78 +203,6 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Line endX="123.62171936035156" endY="-0.6215349435806274" startX="-1.871185302734375" startY="-0.6215448379516602" stroke="#a1a1a142">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Line>
-                  <Button fx:id="newButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#tabButtonAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="265.0" stylesheets="@style.css" text="New List" textFill="WHITE">
-                     <padding>
-                        <Insets left="25.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/add.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <ScrollPane prefHeight="373.0" prefWidth="150.0">
-                     <content>
-                        <VBox fx:id="newListVbox" prefHeight="362.0" prefWidth="155.0">
-                           <children>
-                              <Button fx:id="newButton1" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="155.0" stylesheets="@style.css" text="New1" textFill="WHITE">
-                                 <padding>
-                                    <Insets left="25.0" />
-                                 </padding>
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/clipboard.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="newButton2" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="155.0" stylesheets="@style.css" text="New2" textFill="WHITE">
-                                 <padding>
-                                    <Insets left="25.0" />
-                                 </padding>
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/clipboard.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="newButton3" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="155.0" stylesheets="@style.css" text="New3" textFill="WHITE">
-                                 <padding>
-                                    <Insets left="25.0" />
-                                 </padding>
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/clipboard.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="newButton4" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newListAction" onMouseClicked="#addList" prefHeight="38.0" prefWidth="155.0" stylesheets="@style.css" text="New4" textFill="WHITE">
-                                 <padding>
-                                    <Insets left="25.0" />
-                                 </padding>
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icons/clipboard.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children></VBox>
-                     </content>
-                  </ScrollPane>
                </children>
             </VBox>
          </children>

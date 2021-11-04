@@ -12,8 +12,6 @@ public record Task(String date, String description){
         return description;
     }
 
-
-    // this makes LocalEvents dispaly nicely in GUI
     @Override
     public String toString() {
         if (Objects.equals(date, "")) {

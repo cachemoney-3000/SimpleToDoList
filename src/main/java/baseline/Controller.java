@@ -2,6 +2,8 @@ package baseline;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -39,13 +41,7 @@ public class Controller implements Initializable {
     private DatePicker datePicker;
 
     @FXML
-    private Button enterButton;
-
-    @FXML
     private Button incompleteButton;
-
-    @FXML
-    private Button deleteItem;
 
     @FXML
     private ListView<Task> itemList;
@@ -60,313 +56,68 @@ public class Controller implements Initializable {
     private TextField itemText;
 
     @FXML
-    private TextField listTitle, listTitle_new1, listTitle_new2, listTitle_new3, listTitle_new4;
-
-    @FXML
-    private MenuItem loadButton;
-
-    @FXML
-    private Button newButton, newButton1, newButton2, newButton3, newButton4;
-
-    @FXML
-    private VBox newListVbox;
+    private TextField listTitle;
 
     @FXML
     private Button planButton;
 
     @FXML
-    private MenuItem saveButton;
-
-    @FXML
     private Pane planPane, completedPane, incompletePane;
 
     @FXML
-    public AnchorPane leftPane, newPane1, newPane2, newPane3, newPane4;
+    private Button  deleteButton;
+
 
     @FXML
-    private Button deleteButton_new4, deleteButton_new3, deleteButton_new2, deleteButton_new1;
+    private Button enterButton;
 
-    @FXML
-    private ListView<Task> itemList_new4, itemList_new3, itemList_new2, itemList_new1;
 
-    @FXML
-    private Button deleteItem_new4, deleteItem_new3, deleteItem_new2, deleteItem_new1;
-
-    @FXML
-    private TextField itemText_new4, itemText_new3, itemText_new2, itemText_new1;
-
-    @FXML
-    private DatePicker datePicker_new4, datePicker_new3, datePicker_new2, datePicker_new1;
-
-    @FXML
-    private Button enterButton_new4, enterButton_new3, enterButton_new2, enterButton_new1;
-
-    private static int count = 0;
-
-    @FXML
-    void deleteList(MouseEvent event) {
-        itemList.getItems().clear();
-        item.clear();
-    }
-    @FXML
-    void deleteList_new1(MouseEvent event) {
-        newPane1.getChildren().clear();
-        newListVbox.getChildren().remove(newButton1);
-    }
-    @FXML
-    void deleteList_new2(MouseEvent event){
-        newPane2.getChildren().clear();
-        newListVbox.getChildren().remove(newButton2);
-    }
-    @FXML
-    void deleteList_new3(MouseEvent event){
-        newPane3.getChildren().clear();
-        newListVbox.getChildren().remove(newButton4);
-    }
-    @FXML
-    void deleteList_new4(MouseEvent event){
-        newPane4.getChildren().clear();
-        newListVbox.getChildren().remove(newButton4);
-    }
-
-    @FXML
-    void tabButtonAction(ActionEvent event) throws IOException {
-        if(event.getSource()==planButton){
-            planPane.toFront();
-        }
-        else if(event.getSource() == completedButton){
-            completedPane.toFront();
-        }
-        else if(event.getSource() == incompleteButton){
-            incompletePane.toFront();
-            System.out.println("incomplete");
-        }
-        else if(event.getSource() == newButton){
-            if(count == 1)
-                newButton1.setVisible(true);
-
-            if (count == 2)
-                newButton2.setVisible(true);
-
-            else if (count == 3)
-                newButton3.setVisible(true);
-
-            else if (count == 4)
-                newButton4.setVisible(true);
-
-        }
-    }
-
-    @FXML
-    void newListAction(ActionEvent event){
-        if(event.getSource() == newButton1)
-            newPane1.toFront();
-        else if(event.getSource() == newButton2)
-            newPane2.toFront();
-        else if(event.getSource() == newButton3)
-            newPane3.toFront();
-        else if(event.getSource() == newButton4)
-            newPane4.toFront();
-    }
-
-    @FXML
-    void addList(MouseEvent event) throws IOException {
-    }
 
     public ObservableList<Task> item = FXCollections.observableArrayList();
     public ObservableList<Task> checkedItem = FXCollections.observableArrayList();
     public ObservableList<Task> uncheckedItem = FXCollections.observableArrayList();
 
     @FXML
-    void enteredItem(MouseEvent event) {
-        //create new Event by getting values from gui.
-        String date;
+    void deleteButtonAction(ActionEvent event) {
+        DeleteList del = new DeleteList();
 
-        if(datePicker.getValue()==null){
-            date = "";
-        }
-        else {
-            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        }
-
-        var newItem = new Task(date, itemText.getText());
-
-        int index = itemList.getSelectionModel().getSelectedIndex();
-        if(index >= 0){
-            itemList.getItems().remove(index);
-            item.remove(index);
-            itemList.getItems().add(index, newItem);
-            item.add(index, newItem);
-
-            datePicker.getEditor().clear();
-            datePicker.setValue(null);
-        }
-
-        else{
-            // add the new event to the list
-            itemList.getItems().add(newItem);
-            item.add(newItem);
-
-            datePicker.getEditor().clear();
-            datePicker.setValue(null);
-
-            // set text empty
-            itemText.setText("");
+        if (event.getSource() == deleteButton) {
+            item = del.deleteMain(itemList, item);
+            System.out.println("Cleared the list");
         }
     }
 
     @FXML
-    void enteredItem_new1(MouseEvent event) {
-        //create new Event by getting values from gui.
-        String date;
+    void tabButtonAction(ActionEvent event) {
+        TabVisibility tab = new TabVisibility();
 
-        if(datePicker_new1.getValue()==null){
-            date = "";
+        if(event.getSource()==planButton){
+            tab.makeVisible(planPane);
+            System.out.println("Clicked plan tab button");
         }
-        else {
-            date = datePicker_new1.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        else if(event.getSource() == completedButton){
+            tab.makeVisible(completedPane);
+            System.out.println("Clicked completed tab button");
         }
-
-        var newItem = new Task(date, itemText_new1.getText());
-
-        int index = itemList_new1.getSelectionModel().getSelectedIndex();
-        if(index >= 0){
-            itemList_new1.getItems().remove(index);
-            item.remove(index);
-            itemList_new1.getItems().add(index, newItem);
-            item.add(index, newItem);
-
-            datePicker_new1.getEditor().clear();
-            datePicker_new1.setValue(null);
-        }
-
-        else{
-            // add the new event to the list
-            itemList_new1.getItems().add(newItem);
-            item.add(newItem);
-
-            datePicker_new1.getEditor().clear();
-            datePicker_new1.setValue(null);
-
-            // set text empty
-            itemText_new1.setText("");
+        else if(event.getSource() == incompleteButton){
+            tab.makeVisible(incompletePane);
+            System.out.println("Clicked incomplete tab button");
         }
     }
+
 
     @FXML
-    void enteredItem_new2(MouseEvent event) {
-        //create new Event by getting values from gui.
-        String date;
+    void enteredItemAction(ActionEvent event){
+        if(event.getSource() == enterButton){
+            AddItem enter = new AddItem();
+            int index = itemList.getSelectionModel().getSelectedIndex();
+            if(index >= 0)
+                item = enter.replaceItem(datePicker, itemText, itemList, item, index);
 
-        if(datePicker_new2.getValue()==null){
-            date = "";
-        }
-        else {
-            date = datePicker_new2.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        }
-
-        var newItem = new Task(date, itemText_new2.getText());
-
-        int index = itemList_new2.getSelectionModel().getSelectedIndex();
-        if(index >= 0){
-            itemList_new2.getItems().remove(index);
-            item.remove(index);
-            itemList_new2.getItems().add(index, newItem);
-            item.add(index, newItem);
-
-            datePicker_new2.getEditor().clear();
-            datePicker_new2.setValue(null);
-        }
-
-        else{
-            // add the new event to the list
-            itemList_new2.getItems().add(newItem);
-            item.add(newItem);
-
-            datePicker_new2.getEditor().clear();
-            datePicker_new2.setValue(null);
-
-            // set text empty
-            itemText_new2.setText("");
+            else
+                item = enter.newItem(datePicker, itemText, itemList, item);
         }
     }
-
-    @FXML
-    void enteredItem_new3(MouseEvent event) {
-        //create new Event by getting values from gui.
-        String date;
-
-        if(datePicker_new3.getValue()==null){
-            date = "";
-        }
-        else {
-            date = datePicker_new3.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        }
-
-        var newItem = new Task(date, itemText_new3.getText());
-
-        int index = itemList_new3.getSelectionModel().getSelectedIndex();
-        if(index >= 0){
-            itemList_new3.getItems().remove(index);
-            item.remove(index);
-            itemList_new3.getItems().add(index, newItem);
-            item.add(index, newItem);
-
-            datePicker_new3.getEditor().clear();
-            datePicker_new3.setValue(null);
-        }
-
-        else{
-            // add the new event to the list
-            itemList_new3.getItems().add(newItem);
-            item.add(newItem);
-
-            datePicker_new3.getEditor().clear();
-            datePicker_new3.setValue(null);
-
-            // set text empty
-            itemText_new3.setText("");
-        }
-    }
-
-    @FXML
-    void enteredItem_new4(MouseEvent event) {
-        //create new Event by getting values from gui.
-        String date;
-
-        if(datePicker_new4.getValue()==null){
-            date = "";
-        }
-        else {
-            date = datePicker_new4.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        }
-
-        var newItem = new Task(date, itemText_new4.getText());
-
-        int index = itemList_new4.getSelectionModel().getSelectedIndex();
-        if(index >= 0){
-            itemList_new4.getItems().remove(index);
-            item.remove(index);
-            itemList_new4.getItems().add(index, newItem);
-            item.add(index, newItem);
-
-            datePicker_new4.getEditor().clear();
-            datePicker_new4.setValue(null);
-        }
-
-        else{
-            // add the new event to the list
-            itemList_new4.getItems().add(newItem);
-            item.add(newItem);
-
-            datePicker_new4.getEditor().clear();
-            datePicker_new4.setValue(null);
-
-            // set text empty
-            itemText_new4.setText("");
-        }
-    }
-
 
 
 
@@ -375,7 +126,6 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         listViewCheckBox();
 
-
         checkedItem.addListener((ListChangeListener<Task>) c -> {
             System.out.println("Changed on " + c);
             if(c.next()){
@@ -383,23 +133,21 @@ public class Controller implements Initializable {
             }
         });
 
-        listTitleChanged();
-
-
-
-        newButton.setOnMousePressed(event -> count++);
-
-        newButtonVisibility();
 
         planPane.toFront();
 
+        listTitleChanged();
 
     }
 
     private void listViewCheckBox(){
         // Plan tab
         itemList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
-                -> itemText.setText(String.valueOf(itemList.getSelectionModel().getSelectedItem())));
+                -> {
+            String input = String.valueOf(itemList.getSelectionModel().getSelectedItem());
+            itemText.setText(input);
+        });
+
 
 
         itemList.setCellFactory(CheckBoxListCell.forListView(task -> {
@@ -413,77 +161,9 @@ public class Controller implements Initializable {
             return observable;
         }));
 
-        // New list 1 tab
-        itemList_new1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
-                -> itemText.setText(String.valueOf(itemList_new1.getSelectionModel().getSelectedItem())));
 
-
-        itemList_new1.setCellFactory(CheckBoxListCell.forListView(task -> {
-            BooleanProperty observable = new SimpleBooleanProperty();
-            observable.addListener((obs, wasSelected, isNowSelected) -> {
-                if (isNowSelected) {
-                    checkedItem.add(task);
-                }
-
-            });
-            return observable;
-        }));
-
-        // New list 2 tab
-        itemList_new2.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
-                -> itemText_new2.setText(String.valueOf(itemList_new2.getSelectionModel().getSelectedItem())));
-
-
-        itemList_new2.setCellFactory(CheckBoxListCell.forListView(task -> {
-            BooleanProperty observable = new SimpleBooleanProperty();
-            observable.addListener((obs, wasSelected, isNowSelected) -> {
-                if (isNowSelected) {
-                    checkedItem.add(task);
-                }
-
-            });
-            return observable;
-        }));
-
-        // New list 3 tab
-        itemList_new3.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
-                -> itemText_new3.setText(String.valueOf(itemList_new3.getSelectionModel().getSelectedItem())));
-
-
-        itemList_new3.setCellFactory(CheckBoxListCell.forListView(task -> {
-            BooleanProperty observable = new SimpleBooleanProperty();
-            observable.addListener((obs, wasSelected, isNowSelected) -> {
-                if (isNowSelected) {
-                    checkedItem.add(task);
-                }
-
-            });
-            return observable;
-        }));
-
-        // New list 3 tab
-        itemList_new4.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
-                -> itemText_new4.setText(String.valueOf(itemList_new4.getSelectionModel().getSelectedItem())));
-
-
-        itemList_new4.setCellFactory(CheckBoxListCell.forListView(task -> {
-            BooleanProperty observable = new SimpleBooleanProperty();
-            observable.addListener((obs, wasSelected, isNowSelected) -> {
-                if (isNowSelected) {
-                    checkedItem.add(task);
-                }
-
-            });
-            return observable;
-        }));
     }
 
-    private void newButtonVisibility(){
-        newButton1.setVisible(false);
-        newButton2.setVisible(false);
-        newButton3.setVisible(false);
-        newButton4.setVisible(false);
-    }
 
     private void listTitleChanged(){
         listTitle.setOnKeyPressed(event -> {
@@ -493,33 +173,6 @@ public class Controller implements Initializable {
             }
         });
 
-        listTitle_new1.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.ENTER)){
-                listTitle_new1.setText(listTitle_new1.getText());
-                newButton1.setText(listTitle_new1.getText());
-            }
-        });
-
-        listTitle_new2.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.ENTER)){
-                listTitle_new2.setText(listTitle_new2.getText());
-                newButton2.setText(listTitle_new2.getText());
-            }
-        });
-
-        listTitle_new3.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.ENTER)){
-                listTitle_new3.setText(listTitle_new3.getText());
-                newButton3.setText(listTitle_new3.getText());
-            }
-        });
-
-        listTitle_new4.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.ENTER)){
-                listTitle_new4.setText(listTitle_new4.getText());
-                newButton4.setText(listTitle_new4.getText());
-            }
-        });
     }
 
     @FXML
@@ -536,10 +189,6 @@ public class Controller implements Initializable {
         }
     }
 
-    @FXML
-    void viewList(MouseEvent event) {
-
-    }
 
 
     @FXML
@@ -551,41 +200,6 @@ public class Controller implements Initializable {
         }
     }
 
-    @FXML
-    void deleted_new1(MouseEvent event) {
-        int index = itemList_new1.getSelectionModel().getSelectedIndex();
-        if(index >= 0){
-            itemList_new1.getItems().remove(index);
-            item.remove(index);
-        }
-    }
-
-    @FXML
-    void deleted_new2(MouseEvent event) {
-        int index = itemList_new2.getSelectionModel().getSelectedIndex();
-        if(index >= 0){
-            itemList_new2.getItems().remove(index);
-            item.remove(index);
-        }
-    }
-
-    @FXML
-    void deleted_new3(MouseEvent event) {
-        int index = itemList_new3.getSelectionModel().getSelectedIndex();
-        if(index >= 0){
-            itemList_new3.getItems().remove(index);
-            item.remove(index);
-        }
-    }
-
-    @FXML
-    void deleted_new4(MouseEvent event) {
-        int index = itemList_new4.getSelectionModel().getSelectedIndex();
-        if(index >= 0){
-            itemList_new4.getItems().remove(index);
-            item.remove(index);
-        }
-    }
 
 
 
