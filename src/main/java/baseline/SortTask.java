@@ -31,4 +31,15 @@ public class SortTask {
 
         return uncheckedItem;
     }
+
+    public ObservableList<Task> all(ListView<Task> all_item, ObservableList<Task> item){
+        all_item.getItems().clear();
+
+        for (Task task : item) {
+            all_item.getItems().add(task);
+        }
+
+        return item;
+
+    }
 }

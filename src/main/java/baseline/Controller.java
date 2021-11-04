@@ -44,6 +44,9 @@ public class Controller implements Initializable {
     private Button incompleteButton;
 
     @FXML
+    private Button allButton;
+
+    @FXML
     private AnchorPane incompletePane;
 
     @FXML
@@ -54,6 +57,9 @@ public class Controller implements Initializable {
 
     @FXML
     private ListView<Task> itemList_incomplete;
+
+    @FXML
+    private ListView<Task> all_item;
 
     @FXML
     private TextField itemText;
@@ -69,6 +75,9 @@ public class Controller implements Initializable {
 
     @FXML
     private AnchorPane planPane;
+
+    @FXML
+    private AnchorPane allPane;
 
     @FXML
     private MenuItem saveButton;
@@ -120,6 +129,10 @@ public class Controller implements Initializable {
             // Shall #11
             incompletePane.toFront();
             System.out.println("Clicked incomplete tab button");
+        }
+        else if(event.getSource() == allButton){
+            allPane.toFront();
+            System.out.println("All is clicked");
         }
     }
 
@@ -195,6 +208,12 @@ public class Controller implements Initializable {
             // Stores all the unmarked item into the "uncheckedItem array list"
             uncheckedItem = sort.incomplete(uncheckedItem, item, checkedItem, itemList_incomplete);
         }
+    }
+
+    @FXML
+    void showAll(MouseEvent event) {
+        SortTask sort = new SortTask();
+        item = sort.all(all_item, item);
     }
 
 
