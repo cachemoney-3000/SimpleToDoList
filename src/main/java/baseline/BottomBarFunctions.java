@@ -1,3 +1,8 @@
+/*
+ * UCF COP3330 Fall 2021 Application Assignment 1 Solution
+ * Copyright 2021 Joshua Samontanez
+ */
+
 package baseline;
 
 import javafx.collections.ObservableList;
@@ -7,18 +12,24 @@ import javafx.scene.control.TextField;
 
 import java.time.format.DateTimeFormatter;
 
-public class AddItem {
+public class BottomBarFunctions {
 
-    public ObservableList<Task> newItem(DatePicker datePicker, TextField itemText, ListView<Task> itemList, ObservableList<Task> item){
+    public ObservableList<Task> addItem(DatePicker datePicker, TextField itemText, ListView<Task> itemList, ObservableList<Task> item){
         String date;
 
-        if(datePicker.getValue()==null){
-            date = "";
-        }
-        else {
-            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        }
+        // If there are no dates entered, make the date string blank
+        if(datePicker.getValue() == null)
+            date = " ";
 
+        // This will set the format for the date picker
+        else
+            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        // Will not add an item into the list view if the text field is blank
+        if (itemText.getText().equals(""))
+            return item;
+
+        // This will help read the input from the date picker and text field
         var newItem = new Task(date, itemText.getText());
 
         // Add the new item into the list view and to the observable array
@@ -36,17 +47,21 @@ public class AddItem {
     }
 
     public ObservableList<Task> replaceItem(DatePicker datePicker, TextField itemText, ListView<Task> itemList,
-                            ObservableList<Task> item, int index){
+                                            ObservableList<Task> item, int index){
         String date;
 
-        if(datePicker.getValue() == null)
+        if(datePicker.getValue()  == null)
             // If there are no dates entered, make the date string blank
-            date = "";
+            date = " ";
 
         else
             // This will set the format for the date picker
             date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
+
+        if (itemText.getText().equals("")){
+            return item;
+        }
 
         // Call the task object to get the information from the date picker and the text field
         var newItem = new Task(date, itemText.getText());
@@ -65,6 +80,16 @@ public class AddItem {
         datePicker.getEditor().clear();
         // Remove any entry from the date picker
         datePicker.setValue(null);
+
+        return item;
+    }
+
+    public ObservableList<Task> removeItem(int index, ListView<Task> itemList, ObservableList<Task> item){
+        // This method will remove the item from the list view and the array list once the delete button is clicked
+        if(index >= 0){
+            itemList.getItems().remove(index);
+            item.remove(index);
+        }
 
         return item;
     }
