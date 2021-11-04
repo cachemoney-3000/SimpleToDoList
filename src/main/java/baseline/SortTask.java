@@ -33,8 +33,11 @@ public class SortTask {
     }
 
     public ObservableList<Task> all(ListView<Task> all_item, ObservableList<Task> item){
+        // Will always clear all the items stored in the list view, so it will not be duplicated
         all_item.getItems().clear();
 
+        // Will keep adding all the items from the observable list into the list view
+        // This will make the items visible when the "all" button is clicked
         for (Task task : item) {
             all_item.getItems().add(task);
         }

@@ -98,7 +98,8 @@ class SortTask {
     'This method is responsible for sorting the unchecked items and store it into a list
     +ObservableList<Task> incomplete(ObservableList<Task> uncheckedItem, ObservableList<Task> item,
                                 ObservableList<Task> checkedItem, ListView<Task> itemList_incomplete)
-
+    'This method will get all the items from the list view so it can be show on the "all" tab`
+    +ObservableList<Task> all(ListView<Task> all_item, ObservableList<Task> item)
 }
 
 ToDoListApplication <|-- javafx.application.Application
