@@ -212,8 +212,12 @@ public class Controller implements Initializable {
 
     @FXML
     void showAll(MouseEvent event) {
-        SortTask sort = new SortTask();
-        item = sort.all(all_item, item);
+        // Satisfies shall #10
+        // When the "All" button is clicked, it will show all the items that was created
+        if(event.getSource() == allButton) {
+            SortTask sort = new SortTask();
+            item = sort.all(all_item, item);
+        }
     }
 
 
