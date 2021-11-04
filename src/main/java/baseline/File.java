@@ -17,8 +17,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class File {
-
-    private static void saveToText(java.io.File filename, ObservableList<Task> tasks) {
+    private void saveToText(java.io.File filename, ObservableList<Task> tasks) {
         try(FileWriter writer = new FileWriter(filename)){
             for(Task task : tasks){
                 // This will get the items inside the observable list
@@ -32,7 +31,7 @@ public class File {
         }
     }
 
-    private static List<Task> loadText(String filename) {
+    private List<Task> loadText(String filename) {
         List<Task> tasks = new ArrayList<>();
         java.io.File file = new java.io.File(filename);
 

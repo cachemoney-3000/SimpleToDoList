@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxListCell;
 
 public class Initialize {
-
     public void listCheckBox(ListView<Task> itemList, ObservableList<Task> checkedItem){
         // This method is responsible for allowing check box inside our listview
         itemList.setCellFactory(CheckBoxListCell.forListView(task -> {
@@ -36,7 +35,4 @@ public class Initialize {
             itemText.setText(input);
         });
     }
-
-
-
 }

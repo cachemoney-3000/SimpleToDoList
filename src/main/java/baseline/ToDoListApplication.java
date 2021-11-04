@@ -14,7 +14,7 @@ public class ToDoListApplication extends javafx.application.Application {
     public void start(Stage stage) {
         try{
             // load the fxml file
-            FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("tda.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ToDoListApplication.class.getResource("toDoApplication.fxml"));
             // create a new scene
             Scene scene = new Scene(fxmlLoader.load());
             // the window cannot be resized

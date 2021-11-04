@@ -1,6 +1,6 @@
 @startuml
 
-class Application {
+class ToDoListApplication {
     +main(String[] args)
     +start()
         'this method will load the fxml file'
@@ -10,60 +10,103 @@ class Application {
 
 class Controller {
     'attributes'
-        - TextField addNote;
-        - CheckBox checkBox;
-        - ImageView dateChange;
-        - ImageView dueDate;
-        - TextField itemDesc;
-        - TextField listTitle;
-        - MenuItem menuClose;
-        - MenuItem menuLoad;
-        - MenuItem menuSave;
-        - ImageView removeItem;
-        - ImageView removeList;
-        - Label showDate;
-        - Button tabCompleted;
-        - Button tabIncomplete;
-        - Button tabNew;
-        - Button tabToday;
+        -Button completedButton
+        -AnchorPane completedPane
+        -DatePicker datePicker
+        -Button deleteButton
+        -Button deleteItemButton
+        -Button enterButton
+        -Button incompleteButton
+        -AnchorPane incompletePane
+        -ListView<Task> itemList
+        -ListView<Task> itemList_completed
+        -ListView<Task> itemList_incomplete
+        -TextField itemText
+        -TextField listTitle
+        -MenuItem loadButton
+        -Button planButton
+        -AnchorPane planPane
+        -MenuItem saveButton
 
     'methods'
-        + void save(ActionEvent actionEvent)
-            'method that will save the list'
-            'prompts user where to save'
-        + void load(ActionEvent actionEvent)
-            'method that will load a list'
-            'prompts user where it is located'
-        + void close(ActionEvent actionEvent)
-            'will close the application'
-
-        + void today(MouseEvent mouseEvent)
-            'will show the item on the plan's tab'
-        + void completed(MouseEvent mouseEvent)
-            'will show all the completed tasks'
-        + void incomplete(MouseEvent mouseEvent)
-            'will show all the incompleted tasks'
-        + void addList(MouseEvent mouseEvent)
-            'will add a new list'
-
-        + void changeTitle(KeyEvent keyEvent)
-            'this will change the title of the list'
-        + void removeList(MouseEvent mouseEvent)
-            'this will remove a list when clicked'
-
-        + void editText(KeyEvent keyEvent)
-            'this can edit the text inside an item'
-        + void changeDate(MouseEvent mouseEvent)
-            'this can change the due date of an item'
-        + void deleteItem(MouseEvent mouseEvent)
-            'this will delete an item in a list'
-
-        + void addItem(KeyEvent keyEvent)
-            'this will add an item inside a list'
-        + void pickDate(MouseEvent mouseEvent)
-            'this will be able to pick for a due date'
+        'This method will make the title text field change-able
+        +void changeTitle(KeyEvent event)
+        'This method will read the input and show it into the list view
+        +void enteredItemAction(ActionEvent event)
+        'This method is responsible for saving and loading a file
+        +void fileActionButton(ActionEvent event)
+        'This method is responsible for sorting the incomplete tasks
+        +void incomplete(MouseEvent event)
+        'This method is responsible for removing an item/s on the list view and array list
+        +void removeButton(ActionEvent event)
+        'This method is responsible for showing the anchor pane when a corresponding button is clicked
+        +void tabButtonAction(ActionEvent event)
 }
 
-Application <|-- javafx.application.Application
-Application *-- Controller
+class BottomBarFunctions {
+    'methods:
+    'This method is responsible for adding an item into the list
+    +ObservableList<Task> addItem(DatePicker datePicker, TextField itemText, ListView<Task> itemList,
+    ObservableList<Task> item)
+    'This method is responsible for replacing/overwriting an item from the list
+    +ObservableList<Task> replaceItem(DatePicker datePicker, TextField itemText, ListView<Task> itemList,
+    ObservableList<Task> item, int index)
+    'This method is responsible for removing an item from the list
+    +ObservableList<Task> removeItem(int index, ListView<Task> itemList, ObservableList<Task> item)
+}
+
+class File {
+    'methods:
+    'This is a helper method for saveList method
+    -saveToText(java.io.File filename, ObservableList<Task> tasks)
+    'This is a helper method for the loadList method
+    -List<Task> loadText(String filename)
+    'This method is responsible for loading a file and reading the input
+    +loadList(ListView<Task> itemList, ObservableList<Task> item)
+    'This method is responsible for saving a file and writing the output into the file
+    +void saveList(ObservableList<Task> item)
+}
+
+class Initialize {
+    'methods:
+    'This method will be used when initializing the application. This will show check boxes on the listview
+    +void listCheckBox(ListView<Task> itemList, ObservableList<Task> checkedItem)
+    'This method will be used for putting the selected item into the text field
+    +void listListener(ListView<Task> itemList, TextField itemText)
+}
+
+class TopBarFunctions {
+    'methods:
+    'This method is responsible for clearing all the items from the list
+    +ObservableList<Task> clearList(ListView<Task> itemList, ObservableList<Task> item)
+    'This method is responsible for updating the title of the list
+    +void title(TextField listTitle, Button button)
+}
+
+class Task {
+    'methods:
+    'This method is responsible for storing the date from the date picker
+    +String getDate()
+    'This method is responsible for storing the text written on the text field
+    +String getDescription()
+    'This method is responsible for showing the output from the collected data
+    +String toString()
+}
+
+class SortTask {
+    'methods:
+    'This method is responsible for sorting the unchecked items and store it into a list
+    +ObservableList<Task> incomplete(ObservableList<Task> uncheckedItem, ObservableList<Task> item,
+                                ObservableList<Task> checkedItem, ListView<Task> itemList_incomplete)
+
+}
+
+ToDoListApplication <|-- javafx.application.Application
+ToDoListApplication *-- Controller
+Controller *-- BottomBarFunctions
+Controller *-- File
+Controller *-- Initialize
+Controller *-- TopBarFunctions
+Controller *-- Task
+Controller *-- SortTask
 @enduml

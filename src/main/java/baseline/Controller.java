@@ -73,7 +73,6 @@ public class Controller implements Initializable {
     @FXML
     private MenuItem saveButton;
 
-
     public ObservableList<Task> item = FXCollections.observableArrayList();
     public ObservableList<Task> checkedItem = FXCollections.observableArrayList();
     public ObservableList<Task> uncheckedItem = FXCollections.observableArrayList();
@@ -101,21 +100,19 @@ public class Controller implements Initializable {
 
     @FXML
     void tabButtonAction(ActionEvent event) {
-        TabVisibility tab = new TabVisibility();
-
         // When the "planButton" is clicked, it will show the planPane
         if(event.getSource()==planButton){
-            tab.makeVisible(planPane);
+            planPane.toFront();
             System.out.println("Clicked plan tab button");
         }
         // When the "completedButton" is clicked, it will show the completedPane
         else if(event.getSource() == completedButton){
-            tab.makeVisible(completedPane);
+            completedPane.toFront();
             System.out.println("Clicked completed tab button");
         }
         // When the "incompleteButton" is clicked, it will show the incompletePane
         else if(event.getSource() == incompleteButton){
-            tab.makeVisible(incompletePane);
+            incompletePane.toFront();
             System.out.println("Clicked incomplete tab button");
         }
     }
