@@ -74,7 +74,9 @@ public class Controller implements Initializable {
     private MenuItem saveButton;
 
     public ObservableList<Task> item = FXCollections.observableArrayList();
+    // Stores the checked item, useful for shall #9
     public ObservableList<Task> checkedItem = FXCollections.observableArrayList();
+    // Stores all the unchecked item, useful for shall #9
     public ObservableList<Task> uncheckedItem = FXCollections.observableArrayList();
 
     @Override
@@ -85,6 +87,7 @@ public class Controller implements Initializable {
         // Initialize object is where the important initializing methods are stored
         Initialize init = new Initialize();
 
+        // Shall #9
         // Will make the list view be able to have check box
         init.listCheckBox(itemList, checkedItem);
         // When an item on the list view was selected
@@ -102,16 +105,19 @@ public class Controller implements Initializable {
     void tabButtonAction(ActionEvent event) {
         // When the "planButton" is clicked, it will show the planPane
         if(event.getSource()==planButton){
+            // Shall #1, must have a single list of items
             planPane.toFront();
             System.out.println("Clicked plan tab button");
         }
         // When the "completedButton" is clicked, it will show the completedPane
         else if(event.getSource() == completedButton){
+            // Shall #12
             completedPane.toFront();
             System.out.println("Clicked completed tab button");
         }
         // When the "incompleteButton" is clicked, it will show the incompletePane
         else if(event.getSource() == incompleteButton){
+            // Shall #11
             incompletePane.toFront();
             System.out.println("Clicked incomplete tab button");
         }
@@ -129,6 +135,10 @@ public class Controller implements Initializable {
 
 
     @FXML
+    // Shall #2, Shall #3: method for adding description and due date into the listview
+    // Due dates are optional, but user can't add an item if there is no description
+    // Due date will be a valid date and in the correct format
+    // Shall #4: this method will also add an item into the list
     void enteredItemAction(ActionEvent event){
         // This method is responsible for processing the input from the itemText text field and the date picker
         if(event.getSource() == enterButton){
@@ -138,6 +148,7 @@ public class Controller implements Initializable {
             // The index of that particular item will be stored into the "index"
             int index = itemList.getSelectionModel().getSelectedIndex();
             if(index >= 0)
+                // Shall #7 & #8, the user must click the enter button to update the item
                 // If the user selected an item, and changed the values of it
                 // This will replace the old input with the new input, once the "enterButton" was clicked
                 item = bottomBox.replaceItem(datePicker, itemText, itemList, item, index);
@@ -149,10 +160,10 @@ public class Controller implements Initializable {
         }
     }
 
+    // This method is responsible for the delete buttons inside the application
     @FXML
     void removeButton(ActionEvent event){
-        // This method is responsible for the delete buttons inside the application
-
+        // Satisfies shall #5
         // If the user clicked the "deleteItemButton" located at the bottom left
         // after they selected an item inside the list view
         // That specific item will be removed from the list view and the "item" array list
@@ -163,14 +174,13 @@ public class Controller implements Initializable {
             System.out.println("Remove");
         }
 
+        // Satisfies shall #6
         // If the user clicked the "deleteButton" located at the top right of the window
         // This will clear all the items in the list view and the "item" array list
         else if(event.getSource() == deleteButton){
             TopBarFunctions topBox = new TopBarFunctions();
             item = topBox.clearList(itemList, item);
-
             itemList_completed.getItems().clear();
-
             System.out.println("Cleared the list");
         }
 
@@ -197,6 +207,7 @@ public class Controller implements Initializable {
         // This will read the text file and show all the items inside it into the list view
         // It will also add the items inside the text file into the "items" array list
         if(event.getSource() == loadButton){
+            // Shall #14
             file.loadList(itemList, item);
         }
 
@@ -204,6 +215,7 @@ public class Controller implements Initializable {
         // A file chooser will prompt user to type the name of the file and the location
         // This will get the items inside the "items" array list and put it into the text file
         else if(event.getSource() == saveButton){
+            // Shall #13
             file.saveList(item);
         }
     }
