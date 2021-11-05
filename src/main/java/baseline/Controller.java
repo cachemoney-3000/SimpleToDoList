@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -82,11 +83,11 @@ public class Controller implements Initializable {
     @FXML
     private MenuItem saveButton;
 
-    public ObservableList<Task> item = FXCollections.observableArrayList();
+    private ObservableList<Task> item = FXCollections.observableArrayList();
     // Stores the checked item, useful for shall #9
-    public ObservableList<Task> checkedItem = FXCollections.observableArrayList();
+    private final ObservableList<Task> checkedItem = FXCollections.observableArrayList();
     // Stores all the unchecked item, useful for shall #9
-    public ObservableList<Task> uncheckedItem = FXCollections.observableArrayList();
+    private ObservableList<Task> uncheckedItem = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -205,8 +206,14 @@ public class Controller implements Initializable {
         // This method will sort all the incomplete task to be shown when the "incompleteButton" was clicked
         if(event.getSource() == incompleteButton){
             SortTask sort = new SortTask();
+
+            // Creates a temporary list and copy all the elements from the "item" list into the "temp" list
+            ObservableList<Task> temp = FXCollections.observableArrayList();
+            temp.addAll(item);
+
             // Stores all the unmarked item into the "uncheckedItem array list"
-            uncheckedItem = sort.incomplete(uncheckedItem, item, checkedItem, itemList_incomplete);
+            uncheckedItem = sort.incomplete(uncheckedItem, temp, checkedItem, itemList_incomplete);
+            System.out.println(item);
         }
     }
 

@@ -145,7 +145,35 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="planPane" layoutX="7.0" prefHeight="620.0" prefWidth="632.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="allPane" layoutX="10.0" layoutY="10.0" prefHeight="620.0" prefWidth="636.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox prefHeight="620.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #e28743;">
+                           <children>
+                              <Label prefHeight="74.0" prefWidth="236.0" text="All" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="10.0" left="25.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="565.0" prefWidth="639.0">
+                           <children>
+                              <ListView fx:id="all_item" prefHeight="544.0" prefWidth="639.0" stylesheets="@listView.css" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="planPane" layoutX="7.0" prefHeight="620.0" prefWidth="632.0" styleClass="check-box" stylesheets="@listView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox prefHeight="620.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -178,7 +206,10 @@
                         </HBox>
                         <VBox prefHeight="490.0" prefWidth="580.0">
                            <children>
-                              <ListView fx:id="itemList" prefHeight="479.0" prefWidth="580.0" />
+                              <ListView fx:id="itemList" prefHeight="479.0" prefWidth="580.0" styleClass="check-box" stylesheets="@listView.css">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets></ListView>
                            </children>
                         </VBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #5146b6;">
@@ -222,34 +253,6 @@
                               </Button>
                            </children>
                         </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="allPane" layoutX="10.0" layoutY="10.0" prefHeight="620.0" prefWidth="636.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox prefHeight="620.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <HBox prefHeight="74.0" prefWidth="580.0" style="-fx-background-color: #e28743;">
-                           <children>
-                              <Label prefHeight="74.0" prefWidth="236.0" text="All" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="10.0" left="25.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="565.0" prefWidth="639.0">
-                           <children>
-                              <ListView fx:id="all_item" prefHeight="544.0" prefWidth="639.0" />
-                           </children>
-                        </VBox>
                      </children>
                   </VBox>
                </children>
