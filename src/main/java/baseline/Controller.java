@@ -165,15 +165,33 @@ public class Controller implements Initializable {
                 // Shall #7 & #8, the user must click the enter button to update the item
                 // If the user selected an item, and changed the values of it
                 // This will replace the old input with the new input, once the "enterButton" was clicked
-                item = bottomBox.replaceItem(datePicker, itemText, itemList, item, index);
+                Task newItem = bottomBox.addItem(datePicker, itemText);
+                // Remove the previous entered item on the list view
+                itemList.getItems().remove(index);
+                // Remove the previously entered item on the observable array
+                item.remove(index);
+                // Add the newly edited item on the list view, the index will determine where to insert the item
+                itemList.getItems().add(index, newItem);
+                // Add the newly edited item to the observable array
+                item.add(index, newItem);
+
                 System.out.println("Item replaced");
             }
 
             else{
-                // If the user did not select any item
-                // It will just add an item normally into the list view
-                item = bottomBox.addItem(datePicker, itemText, itemList, item);
-                System.out.println("Added an item");
+                // Will not add an item into the list view if the text field is blank
+                if (itemText.getText().equals("")) {
+                    System.out.println("Text field is blank");
+                }
+                else {
+                    Task newItem = bottomBox.addItem(datePicker, itemText);
+
+                    // Add the new item into the list view and to the observable array
+                    itemList.getItems().add(newItem);
+                    item.add(newItem);
+
+                    System.out.println("Added an item");
+                }
             }
 
         }

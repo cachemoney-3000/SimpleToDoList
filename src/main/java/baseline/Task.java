@@ -22,9 +22,13 @@ public record Task(String date, String description){
     // This will process what is being shown into the list view and the array list
     @Override
     public String toString() {
-        if (Objects.equals(date, " ")) {
+         if (Objects.equals(description," ")){
+            return null;
+        }
+        else if (Objects.equals(date, " ")) {
             return "Task: " + description;
-        } else {
+        }
+        else {
             return "Task: " + description + "   |Due Date: " + date ;
         }
 

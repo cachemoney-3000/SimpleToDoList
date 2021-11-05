@@ -17,21 +17,27 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class File {
-    private void saveToText(java.io.File filename, ObservableList<Task> tasks) {
+    public String saveToText(java.io.File filename, ObservableList<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
         try(FileWriter writer = new FileWriter(filename)){
+
             for(Task task : tasks){
                 // This will get the items inside the observable list
                 // Print those items into the text file
                 // Separate the description and date with "/"
                 writer.write(task.getDescription()+ "/" + task.getDate());
+                sb.append(task.getDescription()+ "/" + task.getDate());
                 writer.write("\n");
+                sb.append("\n");
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+        // Useful for unit testing
+        return String.valueOf(sb);
     }
 
-    private List<Task> loadText(String filename) {
+    public List<Task> loadText(String filename) {
         List<Task> tasks = new ArrayList<>();
         java.io.File file = new java.io.File(filename);
 
