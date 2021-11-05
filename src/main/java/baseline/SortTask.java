@@ -21,9 +21,9 @@ public class SortTask {
         uncheckedItem.addAll(temp);
 
         // Loop through the uncheckedItem list
-        for(int i = 0; i < uncheckedItem.size(); i++){
+        for (Task task : uncheckedItem) {
             // Show all the items inside that list into its corresponding list view
-            itemList_incomplete.getItems().add(uncheckedItem.get(i));
+            itemList_incomplete.getItems().add(task);
         }
 
         return uncheckedItem;

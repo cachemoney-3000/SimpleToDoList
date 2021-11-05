@@ -18,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -144,6 +143,7 @@ public class Controller implements Initializable {
         // It will update the text inside the text field and its corresponding button
         if(event.getCode().equals(KeyCode.ENTER)){
             topBox.title(listTitle, planButton);
+            System.out.println("Title changed");
         }
     }
 
@@ -161,16 +161,21 @@ public class Controller implements Initializable {
             // If a user selected an item on the list view
             // The index of that particular item will be stored into the "index"
             int index = itemList.getSelectionModel().getSelectedIndex();
-            if(index >= 0)
+            if(index >= 0){
                 // Shall #7 & #8, the user must click the enter button to update the item
                 // If the user selected an item, and changed the values of it
                 // This will replace the old input with the new input, once the "enterButton" was clicked
                 item = bottomBox.replaceItem(datePicker, itemText, itemList, item, index);
+                System.out.println("Item replaced");
+            }
 
-            else
+            else{
                 // If the user did not select any item
                 // It will just add an item normally into the list view
                 item = bottomBox.addItem(datePicker, itemText, itemList, item);
+                System.out.println("Added an item");
+            }
+
         }
     }
 
@@ -185,7 +190,7 @@ public class Controller implements Initializable {
             BottomBarFunctions bottomBox = new BottomBarFunctions();
             int index = itemList.getSelectionModel().getSelectedIndex();
             item = bottomBox.removeItem(index, itemList, item);
-            System.out.println("Remove");
+            System.out.println("Item removed");
         }
 
         // Satisfies shall #6
@@ -195,7 +200,7 @@ public class Controller implements Initializable {
             TopBarFunctions topBox = new TopBarFunctions();
             item = topBox.clearList(itemList, item);
             itemList_completed.getItems().clear();
-            System.out.println("Cleared the list");
+            System.out.println("List cleared");
         }
 
     }
@@ -213,7 +218,6 @@ public class Controller implements Initializable {
 
             // Stores all the unmarked item into the "uncheckedItem array list"
             uncheckedItem = sort.incomplete(uncheckedItem, temp, checkedItem, itemList_incomplete);
-            System.out.println(item);
         }
     }
 
@@ -239,6 +243,7 @@ public class Controller implements Initializable {
         if(event.getSource() == loadButton){
             // Shall #14
             file.loadList(itemList, item);
+            System.out.println("File loaded");
         }
 
         // If the user clicked the save button
@@ -247,6 +252,7 @@ public class Controller implements Initializable {
         else if(event.getSource() == saveButton){
             // Shall #13
             file.saveList(item);
+            System.out.println("File saved");
         }
     }
 }

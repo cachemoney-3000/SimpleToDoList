@@ -32,6 +32,10 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
+
+repositories { mavenCentral() }
+dependencies { testImplementation "org.mockito:mockito-core:3.+" }
+
 dependencies {
 
     implementation 'org.projectlombok:lombok:1.18.20'
