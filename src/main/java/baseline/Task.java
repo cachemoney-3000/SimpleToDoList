@@ -29,7 +29,7 @@ public record Task(String date, String description){
             return "Task: " + description;
         }
         else {
-            return "Task: " + description + "   |Due Date: " + date ;
+            return "Task: " + description + "     |     Due Date: " + date ;
         }
 
     }

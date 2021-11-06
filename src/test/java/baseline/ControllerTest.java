@@ -25,7 +25,7 @@ class ControllerTest {
 
         Task addedItem = b.addItemHelper(date, description);
         String actual = addedItem.toString();
-        String expected = "Task: Test   |Due Date: 01/01/2020";
+        String expected = "Task: Test     |     Due Date: 01/01/2020";
 
         assertEquals(expected, actual);
     }
@@ -65,8 +65,8 @@ class ControllerTest {
         ObservableList<Task> item = FXCollections.observableArrayList();
 
         /* Before replacing an item from the list:
-        Task: Test1   |Due Date: 2020/01/01
-        Task: Test2   |Due Date: 2021/01/10
+        Task: Test1     |     Due Date: 2020/01/01
+        Task: Test2     |     Due Date: 2021/01/10
         Task: Test3                          (replace this)
          */
 
@@ -91,9 +91,9 @@ class ControllerTest {
 
         String actual = sb.toString();
         String expected = """
-                Task: Test1   |Due Date: 2020/01/01
-                Task: Test2   |Due Date: 2021/01/10
-                Task: Test66   |Due Date: 2022/01/01
+                Task: Test1     |     Due Date: 2020/01/01
+                Task: Test2     |     Due Date: 2021/01/10
+                Task: Test66     |     Due Date: 2022/01/01
                 """;
 
         assertEquals(expected, actual);
@@ -127,8 +127,8 @@ class ControllerTest {
 
         String actual = sb.toString();
         String expected = """
-                Task: Test1   |Due Date: 2020/01/01
-                Task: Test3   |Due Date: 2022/01/01
+                Task: Test1     |     Due Date: 2020/01/01
+                Task: Test3     |     Due Date: 2022/01/01
                 """;
 
         assertEquals(expected, actual);
@@ -173,9 +173,9 @@ class ControllerTest {
         ObservableList<Task> checked = FXCollections.observableArrayList();
 
         /* All the items
-        Task: Test1   |Due Date: 2020/01/01
-        Task: Test2   |Due Date: 2021/01/01
-        Task: Test3   |Due Date: 2022/01/01
+        Task: Test1     |     Due Date: 2020/01/01
+        Task: Test2     |     Due Date: 2021/01/01
+        Task: Test3     |     Due Date: 2022/01/01
          */
 
         item.add(new Task("2020/01/01", "Test1"));
@@ -198,8 +198,8 @@ class ControllerTest {
 
         String actual = sb.toString();
         String expected = """
-                Task: Test1   |Due Date: 2020/01/01
-                Task: Test2   |Due Date: 2021/01/01
+                Task: Test1     |     Due Date: 2020/01/01
+                Task: Test2     |     Due Date: 2021/01/01
                 """;
 
         assertEquals(expected, actual);
@@ -239,9 +239,9 @@ class ControllerTest {
 
         String actual = sb.toString();
         String expected = """
-                Task: test   |Due Date: 2020
-                Task: test Task   |Due Date: 2012
-                Task: testing   |Due Date: 2060
+                Task: test     |     Due Date: 2020
+                Task: test Task     |     Due Date: 2012
+                Task: testing     |     Due Date: 2060
                 """;
 
         assertEquals(expected, actual);
