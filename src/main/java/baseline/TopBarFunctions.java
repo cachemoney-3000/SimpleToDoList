@@ -7,7 +7,6 @@ package baseline;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class TopBarFunctions {

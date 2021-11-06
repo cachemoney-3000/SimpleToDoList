@@ -7,7 +7,6 @@ package baseline;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.time.format.DateTimeFormatter;
