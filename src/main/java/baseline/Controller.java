@@ -98,16 +98,10 @@ public class Controller implements Initializable {
 
         // Shall #9
         // Will make the list view be able to have check box
-        init.listCheckBox(itemList, checkedItem);
+        init.listCheckBox(itemList, checkedItem, itemList_completed);
         // When an item on the list view was selected
         // It will get its description and show it into the itemText text field
         init.listListener(itemList, itemText);
-
-        // When an item was marked checked, that specific item will now be added into a new list
-        checkedItem.addListener((ListChangeListener<Task>) c -> {
-            if(c.next())
-                itemList_completed.getItems().add(checkedItem.get(c.getFrom()));
-        });
     }
 
     @FXML

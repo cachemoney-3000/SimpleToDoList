@@ -13,14 +13,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxListCell;
 
 public class Initialize {
-    public void listCheckBox(ListView<Task> itemList, ObservableList<Task> checkedItem){
+    public void listCheckBox(ListView<Task> itemList, ObservableList<Task> checkedItem, ListView<Task> itemList_completed){
         // This method is responsible for allowing check box inside our listview
         itemList.setCellFactory(CheckBoxListCell.forListView(task -> {
             BooleanProperty observable = new SimpleBooleanProperty();
             observable.addListener((obs, wasSelected, isNowSelected) -> {
-                // If an item is marked selected, that item will be stored into the checkedItem list
-                if (isNowSelected)
+                if (isNowSelected){
+                    // If an item is marked selected, that item will be stored into the checkedItem list
                     checkedItem.add(task);
+                    itemList_completed.getItems().add(task);
+                }
+                else {
+                    // If an item was unmarked, it will remove that item from the "checkedItem" list
+                    checkedItem.remove(task);
+                    itemList_completed.getItems().remove(task);
+                    System.out.println("Unchecked" + task);
+                }
             });
             return observable;
         }));
