@@ -165,6 +165,46 @@ class ControllerTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void sortIncomplete(){
+        SortTask sort = new SortTask();
+        ObservableList<Task> item = FXCollections.observableArrayList();
+        ObservableList<Task> unchecked = FXCollections.observableArrayList();
+        ObservableList<Task> checked = FXCollections.observableArrayList();
+
+        /* All the items
+        Task: Test1   |Due Date: 2020/01/01
+        Task: Test2   |Due Date: 2021/01/01
+        Task: Test3   |Due Date: 2022/01/01
+         */
+
+        item.add(new Task("2020/01/01", "Test1"));
+        item.add(new Task("2021/01/01", "Test2"));
+        item.add(new Task("2022/01/01", "Test3"));
+
+        /* Completed task
+        Task: Test3   |Due Date: 2022/01/01
+         */
+        checked.add(new Task("2022/01/01", "Test3"));
+
+        unchecked = sort.incomplete(unchecked, item, checked);
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Task task : unchecked) {
+            sb.append(task);
+            sb.append("\n");
+        }
+
+        String actual = sb.toString();
+        String expected = """
+                Task: Test1   |Due Date: 2020/01/01
+                Task: Test2   |Due Date: 2021/01/01
+                """;
+
+        assertEquals(expected, actual);
+    }
+
 
     @Test
     void saveTest() {

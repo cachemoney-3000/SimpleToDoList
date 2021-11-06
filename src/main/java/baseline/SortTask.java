@@ -10,9 +10,8 @@ import javafx.scene.control.ListView;
 
 public class SortTask {
     public ObservableList<Task> incomplete(ObservableList<Task> uncheckedItem, ObservableList<Task> temp,
-                           ObservableList<Task> checkedItem, ListView<Task> itemList_incomplete){
-        // Will clear all the items inside the list view, so the items will not be duplicated
-        itemList_incomplete.getItems().clear();
+                                           ObservableList<Task> checkedItem){
+
         // Also clear all the items inside the uncheckedItem array list
         uncheckedItem.clear();
         // Will remove all the items that is present on the checkedItem array list
@@ -20,11 +19,7 @@ public class SortTask {
         // Add all the remaining items into the uncheckedItem list
         uncheckedItem.addAll(temp);
 
-        // Loop through the uncheckedItem list
-        for (Task task : uncheckedItem) {
-            // Show all the items inside that list into its corresponding list view
-            itemList_incomplete.getItems().add(task);
-        }
+
 
         return uncheckedItem;
     }
@@ -36,7 +31,6 @@ public class SortTask {
         // Will keep adding all the items from the observable list into the list view
         // This will make the items visible when the "all" button is clicked
         for (Task task : item) {
-            System.out.println(item);
             all_item.getItems().add(task);
         }
 

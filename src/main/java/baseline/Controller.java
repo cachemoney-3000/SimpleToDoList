@@ -188,7 +188,7 @@ public class Controller implements Initializable {
                     itemList.getItems().add(newItem);
                     item.add(newItem);
 
-                    System.out.println("Added an item");
+                    System.out.println("Item added");
                 }
             }
 
@@ -238,8 +238,16 @@ public class Controller implements Initializable {
             ObservableList<Task> temp = FXCollections.observableArrayList();
             temp.addAll(item);
 
+            // Will clear all the items inside the list view, so the items will not be duplicated
+            itemList_incomplete.getItems().clear();
             // Stores all the unmarked item into the "uncheckedItem array list"
-            uncheckedItem = sort.incomplete(uncheckedItem, temp, checkedItem, itemList_incomplete);
+            uncheckedItem = sort.incomplete(uncheckedItem, temp, checkedItem);
+
+            // Loop through the uncheckedItem list
+            for (Task task : uncheckedItem) {
+                // Show all the items inside that list into its corresponding list view
+                itemList_incomplete.getItems().add(task);
+            }
         }
     }
 
