@@ -162,18 +162,16 @@ public class Controller implements Initializable {
             // The index of that particular item will be stored into the "index"
             int index = itemList.getSelectionModel().getSelectedIndex();
             if(index >= 0){
-                // Shall #7 & #8, the user must click the enter button to update the item
-                // If the user selected an item, and changed the values of it
-                // This will replace the old input with the new input, once the "enterButton" was clicked
+                // Shall #7 & #8, the user must edit the description and click the enter button to update the item
+
                 Task newItem = bottomBox.addItem(datePicker, itemText);
+                // Remove the previously entered item on the observable array
+                item = bottomBox.replaceItemHelper(index, item, newItem);
                 // Remove the previous entered item on the list view
                 itemList.getItems().remove(index);
-                // Remove the previously entered item on the observable array
-                item.remove(index);
                 // Add the newly edited item on the list view, the index will determine where to insert the item
                 itemList.getItems().add(index, newItem);
                 // Add the newly edited item to the observable array
-                item.add(index, newItem);
 
                 System.out.println("Item replaced");
             }
@@ -207,7 +205,8 @@ public class Controller implements Initializable {
         if(event.getSource() == deleteItemButton){
             BottomBarFunctions bottomBox = new BottomBarFunctions();
             int index = itemList.getSelectionModel().getSelectedIndex();
-            item = bottomBox.removeItem(index, itemList, item);
+            item = bottomBox.removeItem(index, item);
+            itemList.getItems().remove(index);
             System.out.println("Item removed");
         }
 
@@ -216,8 +215,13 @@ public class Controller implements Initializable {
         // This will clear all the items in the list view and the "item" array list
         else if(event.getSource() == deleteButton){
             TopBarFunctions topBox = new TopBarFunctions();
-            item = topBox.clearList(itemList, item);
+            item = topBox.clearList(item);
+
+            // Clear all stored items from different lists
+            itemList.getItems().clear();
             itemList_completed.getItems().clear();
+            itemList_incomplete.getItems().clear();
+
             System.out.println("List cleared");
         }
 

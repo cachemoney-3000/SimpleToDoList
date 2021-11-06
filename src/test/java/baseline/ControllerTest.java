@@ -60,7 +60,109 @@ class ControllerTest {
     }
 
     @Test
-    void removeButton() {
+    void replaceItem(){
+        BottomBarFunctions b = new BottomBarFunctions();
+        ObservableList<Task> item = FXCollections.observableArrayList();
+
+        /* Before replacing an item from the list:
+        Task: Test1   |Due Date: 2020/01/01
+        Task: Test2   |Due Date: 2021/01/10
+        Task: Test3                          (replace this)
+         */
+
+        item.add(new Task("2020/01/01", "Test1"));
+        item.add(new Task("2021/01/10", "Test2"));
+        item.add(new Task(" ", "Test3"));
+
+        // Replace the 3rd item with:
+        String date = "2022/01/01";
+        String description = "Test66";
+        int index = 2;
+        Task replace = b.addItemHelper(date, description);
+
+        item = b.replaceItemHelper(index, item, replace);
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Task task : item) {
+            sb.append(task);
+            sb.append("\n");
+        }
+
+        String actual = sb.toString();
+        String expected = """
+                Task: Test1   |Due Date: 2020/01/01
+                Task: Test2   |Due Date: 2021/01/10
+                Task: Test66   |Due Date: 2022/01/01
+                """;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void removeItem() {
+        BottomBarFunctions b = new BottomBarFunctions();
+        ObservableList<Task> item = FXCollections.observableArrayList();
+
+        /* Before removing an item from the list:
+        Task: Test1   |Due Date: 2020/01/01
+        Task: Test2   |Due Date: 2021/01/01 (remove this)
+        Task: Test3   |Due Date: 2022/01/01
+         */
+
+        item.add(new Task("2020/01/01", "Test1"));
+        item.add(new Task("2021/01/01", "Test2"));
+        item.add(new Task("2022/01/01", "Test3"));
+        // Index we want to remove
+        int index = 1;
+
+        item = b.removeItem(index, item);
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Task task : item) {
+            sb.append(task);
+            sb.append("\n");
+        }
+
+        String actual = sb.toString();
+        String expected = """
+                Task: Test1   |Due Date: 2020/01/01
+                Task: Test3   |Due Date: 2022/01/01
+                """;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void clearList(){
+        TopBarFunctions t = new TopBarFunctions();
+        ObservableList<Task> item = FXCollections.observableArrayList();
+
+        /* Before clearing all items from the list:
+        Task: Test1   |Due Date: 2020/01/01
+        Task: Test2   |Due Date: 2021/01/01
+        Task: Test3   |Due Date: 2022/01/01
+         */
+
+        item.add(new Task("2020/01/01", "Test1"));
+        item.add(new Task("2021/01/01", "Test2"));
+        item.add(new Task("2022/01/01", "Test3"));
+
+        item = t.clearList(item);
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Task task : item) {
+            sb.append(task);
+            sb.append("\n");
+        }
+
+        String actual = sb.toString();
+        // It is now empty
+        String expected = "";
+
+        assertEquals(expected, actual);
     }
 
 
@@ -103,7 +205,5 @@ class ControllerTest {
                 """;
 
         assertEquals(expected, actual);
-
-
     }
 }

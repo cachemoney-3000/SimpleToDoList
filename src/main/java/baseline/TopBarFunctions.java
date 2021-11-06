@@ -12,14 +12,9 @@ import javafx.scene.control.TextField;
 
 public class TopBarFunctions {
 
-    public ObservableList<Task> clearList(ListView<Task> itemList, ObservableList<Task> item){
+    public ObservableList<Task> clearList(ObservableList<Task> item){
         // If this method is called it will clear the items inside the list
-
-        // This will clear all the items inside the list view
-        itemList.getItems().clear();
-        // It will also clear all the items store in the array list
         item.clear();
-
         return item;
     }
 

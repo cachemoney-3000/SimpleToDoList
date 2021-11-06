@@ -43,14 +43,17 @@ public class BottomBarFunctions {
         return new Task(date, description);
     }
 
+    public ObservableList<Task> replaceItemHelper(int index, ObservableList<Task> item, Task newItem){
+        // This will remove the item from that specific index
+        item.remove(index);
+        // This will replace the item from the same index we used to remove
+        item.add(index, newItem);
+        return item;
+    }
 
-    public ObservableList<Task> removeItem(int index, ListView<Task> itemList, ObservableList<Task> item){
-        // This method will remove the item from the list view and the array list once the delete button is clicked
-        if(index >= 0){
-            itemList.getItems().remove(index);
-            item.remove(index);
-        }
-
+    public ObservableList<Task> removeItem(int index, ObservableList<Task> item){
+        // This method will remove an item from the observable list
+        item.remove(index);
         return item;
     }
 }
