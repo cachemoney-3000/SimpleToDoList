@@ -265,8 +265,11 @@ public class Controller implements Initializable {
         // It will also add the items inside the text file into the "items" array list
         if(event.getSource() == loadButton){
             // Shall #14
+            itemList.getItems().clear();
+            item.clear();
             file.loadList(itemList, item);
             System.out.println("File loaded");
+            System.out.println(item);
         }
 
         // If the user clicked the save button
